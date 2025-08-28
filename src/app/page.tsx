@@ -1,28 +1,45 @@
 "use client";
 
-import React, {useState} from 'react';
-import {CheckCircle, Facebook, Linkedin, Menu, Sun, Twitter, X} from 'lucide-react';
-import {COLORS} from "@/utilis/colors";
+import React, { useState, ReactNode } from 'react';
+import { CheckCircle, Facebook, Linkedin, Menu, Sun, Twitter, X } from 'lucide-react';
 
-// Composant SolarButton intégré
-const SolarButton = ({
-                       children,
-                       text = "RBDIRIADËER UN PËCIE",
-                       onClick = () => {},
-                       variant = 'primary',
-                       size = 'md',
-                       disabled = false,
-                       className = '',
-                     }) => {
+// Define COLORS since it's imported but not available in this environment
+const COLORS = {
+  jauneSolaire: '#FFC107',
+  vertEnergie: '#4CAF50',
+  blancPur: '#FFFFFF'
+};
+
+// Define proper TypeScript interfaces
+interface SolarButtonProps {
+  children?: ReactNode;
+  text?: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+  className?: string;
+}
+
+// Composant SolarButton intégré avec types fixes
+const SolarButton: React.FC<SolarButtonProps> = ({
+                                                   children,
+                                                   text = "RBDIRIADËER UN PËCIE",
+                                                   onClick = () => {},
+                                                   variant = 'primary',
+                                                   size = 'md',
+                                                   disabled = false,
+                                                   className = '',
+                                                 }) => {
   const baseClasses = "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
 
-  const variantClasses = {
+  const variantClasses: Record<string, string> = {
     primary: "text-gray-900",
     secondary: "text-white",
     outline: "bg-transparent border-2"
   };
 
-  const sizeClasses = {
+  const sizeClasses: Record<string, string> = {
     sm: "px-4 py-2 text-sm",
     md: "px-8 py-4 text-lg",
     lg: "px-10 py-5 text-xl"
@@ -72,10 +89,10 @@ const SolarButton = ({
   );
 };
 
-const SolarLandingPage = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const SolarLandingPage: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const navigationItems = [
+  const navigationItems: string[] = [
     'Annuali',
     'A piepen',
     'Ves Services',
@@ -84,7 +101,7 @@ const SolarLandingPage = () => {
     'Contact'
   ];
 
-  const benefits = [
+  const benefits: string[] = [
     'Reduire vos coûts énergétiques',
     'Amellerer votre auton prix',
     'Refforcer votre impact environnemental'
@@ -211,22 +228,12 @@ const SolarLandingPage = () => {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
                   <div className="aspect-square bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 relative">
                     {/* Solar panels grid effect */}
-                    <div className="absolute inset-0 opacity-80">
-                      <div className="grid grid-cols-8 gap-1 h-full p-4">
-                        {Array.from({ length: 64 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className="bg-blue-800/30 rounded-sm border border-blue-300/20 animate-pulse"
-                                style={{ animationDelay: `${i * 50}ms` }}
-                            ></div>
-                        ))}
-                      </div>
-                    </div>
+                    <img
+                        src="/images/panneaux_photovoltaiques.jpg"
+                        alt="Panneaux solaires"
+                        className="w-full h-full object-cover"
+                    />
 
-                    {/* Clouds */}
-                    <div className="absolute top-4 left-8 w-16 h-8 bg-white/80 rounded-full animate-float"></div>
-                    <div className="absolute top-8 right-12 w-12 h-6 bg-white/60 rounded-full animate-float-delayed"></div>
-                    <div className="absolute top-12 left-1/3 w-20 h-10 bg-white/70 rounded-full animate-float-slow"></div>
                   </div>
 
                   {/* Glow effect */}
@@ -236,6 +243,8 @@ const SolarLandingPage = () => {
                 {/* Floating elements */}
                 <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full animate-bounce shadow-lg" style={{ backgroundColor: COLORS.jauneSolaire }}></div>
                 <div className="absolute -bottom-4 -left-4 w-6 h-6 rounded-full animate-pulse shadow-lg" style={{ backgroundColor: COLORS.vertEnergie }}></div>
+
+
               </div>
             </div>
           </div>
