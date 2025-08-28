@@ -22,7 +22,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
         { label: 'À propos', href: '/about' },
         { label: 'Nos Services', href: '/services' },
         { label: 'Projets & Réalisations', href: '/projects' },
-        { label: 'Blog / Conseils énergie', href: '/blog' },
+        { label: 'Blog / Conseils énergie', href: '/tips' },
         { label: 'Contact', href: '/contact' }
     ];
 

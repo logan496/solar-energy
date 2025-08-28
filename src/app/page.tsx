@@ -2,6 +2,7 @@
 
 import React, { useState, ReactNode } from 'react';
 import { CheckCircle, Facebook, Linkedin, Menu, Sun, Twitter, X } from 'lucide-react';
+import {NavigationItem} from "@/utilis/types";
 
 // Define COLORS since it's imported but not available in this environment
 const COLORS = {
@@ -24,7 +25,7 @@ interface SolarButtonProps {
 // Composant SolarButton intégré avec types fixes
 const SolarButton: React.FC<SolarButtonProps> = ({
                                                    children,
-                                                   text = "RBDIRIADËER UN PËCIE",
+                                                   text = "DEMANDEZ UN DEVIS DÈS AUJOURD'HUI",
                                                    onClick = () => {},
                                                    variant = 'primary',
                                                    size = 'md',
@@ -92,19 +93,37 @@ const SolarButton: React.FC<SolarButtonProps> = ({
 const SolarLandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const navigationItems: string[] = [
-    'Annuali',
-    'A piepen',
-    'Ves Services',
-    'Projete a Relistentias',
-    'Reg / Contals eimaga',
-    'Contact'
+  const navigationItems: NavigationItem[] = [
+    {
+      label: 'Accueil',
+      href: '/'
+    },
+    {
+      label: 'À propos',
+      href: '/about'
+    },
+    {
+      label: 'Nos Servoices',
+      href: '/services'
+    },
+    {
+      label: 'Projets et réalisations',
+      href: '/projects'
+    },
+    {
+      label: 'Reg / Contals eimaga',
+      href: '/reg'
+    },
+    {
+      label: 'Contact',
+      href: '/Contact'
+    }
   ];
 
   const benefits: string[] = [
-    'Reduire vos coûts énergétiques',
-    'Amellerer votre auton prix',
-    'Refforcer votre impact environnemental'
+    'Réduisez significativement vos factures d\'électricité',
+    'Gagnez en autonomie énergétique(partielle ou totale)',
+    'Agissez pour la protection de l\'environnement'
   ];
 
   return (
@@ -120,8 +139,13 @@ const SolarLandingPage: React.FC = () => {
                   <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-20 animate-pulse"></div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <span className="text-xl font-black text-green-700">SOLAR</span>
-                  <span className="text-sm text-gray-500">di karabacak</span>
+                  <img
+                      src="/images/logo-solar.png"
+                      alt="Solar logo"
+                      className="w-20 h-18"
+                  />
+                  {/*<span className="text-xl font-black text-green-700">SOLAR</span>*/}
+                  {/*<span className="text-sm text-gray-500">di karabacak</span>*/}
                 </div>
               </div>
 
@@ -130,10 +154,10 @@ const SolarLandingPage: React.FC = () => {
                 {navigationItems.map((item, index) => (
                     <a
                         key={index}
-                        href="/Contact"
+                        href={item.href}
                         className="text-gray-700 hover:text-green-600 transition-colors duration-300 text-sm font-medium relative group"
                     >
-                      {item}
+                      {item.label}
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                 ))}
@@ -155,10 +179,10 @@ const SolarLandingPage: React.FC = () => {
                     {navigationItems.map((item, index) => (
                         <a
                             key={index}
-                            href="#"
+                            href={item.href}
                             className="text-gray-700 hover:text-green-600 transition-colors duration-300 text-sm font-medium py-2"
                         >
-                          {item}
+                          {item.label}
                         </a>
                     ))}
                   </nav>
@@ -184,8 +208,8 @@ const SolarLandingPage: React.FC = () => {
                   </h1>
 
                   <p className="text-lg text-gray-600 mb-8 max-w-md">
-                    Refliure vos entre énergétiques, ancillerer
-                    votre ros extélà ancillere votre impact
+                    Réduisez votre empreinte énergétique, améliorer
+                    votre confort et renforcer votre impact environnemental
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4">
