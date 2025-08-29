@@ -2,7 +2,12 @@
 
 import React, { useState, ReactNode } from 'react';
 import { CheckCircle, Facebook, Linkedin, Menu, Sun, Twitter, X } from 'lucide-react';
-import {NavigationItem} from "@/utilis/types";
+
+// Types pour NavigationItem
+interface NavigationItem {
+  label: string;
+  href: string;
+}
 
 // Define COLORS since it's imported but not available in this environment
 const COLORS = {
@@ -103,7 +108,7 @@ const SolarLandingPage: React.FC = () => {
       href: '/about'
     },
     {
-      label: 'Nos Servoices',
+      label: 'Nos Services',
       href: '/services'
     },
     {
@@ -267,8 +272,6 @@ const SolarLandingPage: React.FC = () => {
                 {/* Floating elements */}
                 <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full animate-bounce shadow-lg" style={{ backgroundColor: COLORS.jauneSolaire }}></div>
                 <div className="absolute -bottom-4 -left-4 w-6 h-6 rounded-full animate-pulse shadow-lg" style={{ backgroundColor: COLORS.vertEnergie }}></div>
-
-
               </div>
             </div>
           </div>
