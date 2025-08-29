@@ -6,7 +6,9 @@ import React from "react";
 import {Heart, Lightbulb, Settings, Sun} from "lucide-react";
 import { COLORS } from "../COLORS";
 
-interface AboutPageProps {}
+interface AboutPageProps {
+    // Add properties here if needed in the future
+}
 
 const AboutPage: React.FC<AboutPageProps> = () => {
     const navigationItems: NavigationItem[] = [
@@ -48,9 +50,9 @@ const AboutPage: React.FC<AboutPageProps> = () => {
                             </p>
                             <p className="text-gray-600 leading-relaxed">
                                 Nous nous engageons à fournir des solutions énergétiques durables
-                                et innovantes pour transformer votre façon de consommer l'énergie.
-                                Notre expertise technique combinée à notre passion pour l'environnement
-                                nous permet d'accompagner nos clients vers une autonomie énergétique complète.
+                                et innovantes pour transformer votre façon de consommer l&apos;énergie.
+                                Notre expertise technique combinée à notre passion pour l&apos;environnement
+                                nous permet d&apos;accompagner nos clients vers une autonomie énergétique complète.
                             </p>
                         </div>
 
@@ -149,7 +151,7 @@ const AboutPage: React.FC<AboutPageProps> = () => {
                             </div>
                             <div>
                                 <div className="text-4xl font-black mb-2">10+</div>
-                                <div className="text-lg opacity-90">Années d'Expérience</div>
+                                <div className="text-lg opacity-90">Années d&apos;Expérience</div>
                             </div>
                         </div>
                     </div>
@@ -157,10 +159,10 @@ const AboutPage: React.FC<AboutPageProps> = () => {
                     {/* Call to Action */}
                     <div className="text-center animate-in fade-in slide-in-from-bottom duration-700">
                         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                            Prêt à passer à l'énergie solaire ?
+                            Prêt à passer à l&apos;énergie solaire ?
                         </h2>
                         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                            Contactez-nous dès aujourd'hui pour une consultation gratuite
+                            Contactez-nous dès aujourd&apos;hui pour une consultation gratuite
                             et découvrez comment nous pouvons vous aider à réduire vos coûts énergétiques.
                         </p>
                         <button

@@ -64,7 +64,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                     Contactez-nous
                                 </h1>
                                 <p className="text-gray-600 mb-8">
-                                    Nous sommes là pour répondre à toutes vos questions sur l'énergie solaire
+                                    Nous sommes là pour répondre à toutes vos questions sur l&apos;énergie solaire
                                 </p>
 
                                 <div className="space-y-6">
@@ -148,7 +148,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                     Nos informations
                                 </h2>
                                 <p className="text-gray-600 mb-8">
-                                    N'hésitez pas à nous contacter par téléphone ou par email
+                                    N&apos;hésitez pas à nous contacter par téléphone ou par email
                                 </p>
 
                                 <div className="space-y-6 mb-8">
@@ -159,8 +159,8 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                         <div>
                                             <p className="text-sm text-gray-500">Téléphone</p>
                                             <span className="text-gray-800 font-medium">
-                        +237 678 901 234
-                      </span>
+                                                +237 678 901 234
+                                            </span>
                                         </div>
                                     </div>
 
@@ -171,8 +171,8 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                         <div>
                                             <p className="text-sm text-gray-500">Email</p>
                                             <span className="text-gray-800 font-medium">
-                        contact@solarenergy.cm
-                      </span>
+                                                contact@solarenergy.cm
+                                            </span>
                                         </div>
                                     </div>
 
@@ -183,15 +183,15 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                         <div>
                                             <p className="text-sm text-gray-500">Adresse</p>
                                             <span className="text-gray-800 font-medium">
-                        123 Avenue de l'Énergie, Douala, Cameroun
-                      </span>
+                                                123 Avenue de l&apos;Énergie, Douala, Cameroun
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Heures d'ouverture */}
                                 <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
-                                    <h3 className="font-semibold text-gray-900 mb-3">Heures d'ouverture</h3>
+                                    <h3 className="font-semibold text-gray-900 mb-3">Heures d&apos;ouverture</h3>
                                     <div className="space-y-2 text-sm">
                                         <div className="flex justify-between">
                                             <span className="text-gray-600">Lundi - Vendredi</span>
