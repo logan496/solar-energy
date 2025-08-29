@@ -51,7 +51,7 @@ export default function ServicesPage() {
         {
             icon: <Search size={32} />,
             title: "Audit énergétique",
-            description: "Nous établissons un diagnostic énergétique précis et proposons des solutions d'optimisation pour améliorer l'efficacité énergétique de votre installation.",
+            description: "Nous établissons un diagnostic énergétique précis et proposons des solutions d&apos;optimisation pour améliorer l&apos;efficacité énergétique de votre installation.",
             color: COLORS.jauneSolaire
         },
         {
@@ -63,13 +63,13 @@ export default function ServicesPage() {
         {
             icon: <BarChart3 size={32} />,
             title: "Efficacité énergétique",
-            description: "Nous analysons votre consommation énergétique et mettons en place des stratégies d'optimisation pour réduire vos coûts énergétiques.",
+            description: "Nous analysons votre consommation énergétique et mettons en place des stratégies d&apos;optimisation pour réduire vos coûts énergétiques.",
             color: COLORS.jauneSolaire
         },
         {
             icon: <Users size={32} />,
             title: "Formation et conseil",
-            description: "Nous proposons des formations personnalisées et des conseils d'experts pour optimiser l'utilisation de vos installations énergétiques.",
+            description: "Nous proposons des formations personnalisées et des conseils d&apos;experts pour optimiser l&apos;utilisation de vos installations énergétiques.",
             color: COLORS.bleuCiel
         }
     ];
@@ -88,7 +88,7 @@ export default function ServicesPage() {
                         </h1>
                         <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-8"></div>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            Découvrez notre gamme complète de services dédiés à l'énergie solaire et à l'efficacité énergétique
+                            Découvrez notre gamme complète de services dédiés à l&apos;énergie solaire et à l&apos;efficacité énergétique
                         </p>
                     </div>
 
@@ -110,7 +110,7 @@ export default function ServicesPage() {
                     <div className="text-center mt-16">
                         <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-8 max-w-4xl mx-auto text-white">
                             <h2 className="text-3xl font-bold mb-4">
-                                Prêt à passer à l'énergie solaire ?
+                                Prêt à passer à l&apos;énergie solaire ?
                             </h2>
                             <p className="text-xl mb-8 opacity-90">
                                 Contactez nos experts pour un devis personnalisé et gratuit
@@ -124,22 +124,22 @@ export default function ServicesPage() {
             </div>
 
             <style jsx>{`
-        @keyframes fadeIn {
-          from { 
-            opacity: 0; 
-            transform: translateY(30px); 
-          }
-          to { 
-            opacity: 1; 
-            transform: translateY(0); 
-          }
-        }
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
 
-        .animate-fade-in {
-          opacity: 0;
-          animation: fadeIn 0.8s ease-out forwards;
-        }
-      `}</style>
+                .animate-fade-in {
+                    opacity: 0;
+                    animation: fadeIn 0.8s ease-out forwards;
+                }
+            `}</style>
         </div>
     );
 }

@@ -6,11 +6,10 @@ import React from "react";
 import {Heart, Lightbulb, Settings, Sun} from "lucide-react";
 import { COLORS } from "../COLORS";
 
-interface AboutPageProps {
-    // Add properties here if needed in the future
-}
+// Pas d'interface nécessaire pour cette page
+// interface AboutPageProps peut être ajoutée plus tard si nécessaire
 
-const AboutPage: React.FC<AboutPageProps> = () => {
+const AboutPage: React.FC = () => {
     const navigationItems: NavigationItem[] = [
         { label: 'Accueil', href: '/' },
         { label: 'À propos', href: '/about' },

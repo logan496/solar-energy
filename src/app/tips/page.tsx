@@ -146,7 +146,7 @@ export default function EnergyTipsPage() {
     const navigationItems: NavigationItem[] = [
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },
-        { label: "Blog", href: "/blog" },
+        { label: "Blog", href: "/" },
         { label: "Contact", href: "/contact" }
     ];
 
