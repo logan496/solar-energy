@@ -2,19 +2,33 @@
 
 import { NavBar } from "@/components/layout/NavBar";
 import {NavigationItem} from "@/utilis/types";
-import React from "react";
-import {Heart, Lightbulb, Settings, Sun} from "lucide-react";
+import React, { useState } from "react";
+import {Heart, Lightbulb, Settings, Sun, ChevronDown, ChevronUp} from "lucide-react";
 import { COLORS } from "../COLORS";
 
 // Pas d'interface nécessaire pour cette page
 // interface AboutPageProps peut être ajoutée plus tard si nécessaire
 
 const AboutPage: React.FC = () => {
+    const [expandedCards, setExpandedCards] = useState<{[key: string]: boolean}>({
+        vision: false,
+        expertise: false,
+        values: false
+    });
+
+    const toggleCard = (cardName: string) => {
+        setExpandedCards(prev => ({
+            ...prev,
+            [cardName]: !prev[cardName]
+        }));
+    };
+
     const navigationItems: NavigationItem[] = [
         { label: 'Accueil', href: '/' },
         { label: 'À propos', href: '/about' },
         { label: 'Services', href: '/services' },
-        { label: 'Contact', href: '/contact' }
+        { label: 'Contact', href: '/contact' },
+        { label: 'Projets & réalisations', href: '/projets' },
     ];
 
     return (
@@ -23,9 +37,6 @@ const AboutPage: React.FC = () => {
 
             <main className="pt-20">
                 <div className="container mx-auto px-4 py-12">
-                    {/* Header Section */}
-
-
                     {/* Main Content Grid */}
                     <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
 
@@ -41,17 +52,11 @@ const AboutPage: React.FC = () => {
                             <h2 className="text-3xl font-bold text-gray-900 mb-4">
                                 Présentation de Solar Energy Options
                             </h2>
-                            <p className="text-lg text-gray-600 leading-relaxed">
-                                Solar Energy Options est une leader in dolor lacier,
-                                en energitas sineticulus vitae sollicitudin 2 begeinration,
-                                et spartitis quelle energie tepiles de tingas infuration,
-                                et commanditation.
-                            </p>
-                            <p className="text-gray-600 leading-relaxed">
-                                Nous nous engageons à fournir des solutions énergétiques durables
-                                et innovantes pour transformer votre façon de consommer l&apos;énergie.
-                                Notre expertise technique combinée à notre passion pour l&apos;environnement
-                                nous permet d&apos;accompagner nos clients vers une autonomie énergétique complète.
+                            <p className="text-xl text-gray-600 leading-relaxed">
+                                Solar Energy Options est une entreprise camerounaise spécialisée dans l'efficacité énergétique et
+                                les solutions solaires durables. Nous répondons aux besoins énergétiques modernes en offrant
+                                des services de qualité supérieure, conçus pour réduire l'empreinte écologique tout en
+                                améliorant l'accès à l'énergie.
                             </p>
                         </div>
 
@@ -92,43 +97,134 @@ const AboutPage: React.FC = () => {
                                 </div>
                                 <h3 className="text-2xl font-bold text-gray-900">Vision</h3>
                             </div>
-                            <p className="text-gray-600 text-center leading-relaxed">
-                                Foir und communitaassius lorem aspitore energie
-                                sustainable, nous nous le chastem lactér nicht
-                                tempegere nowir lels da pulmenta quelicet.
-                            </p>
+                            <div className="text-gray-600 leading-relaxed">
+                                <p className="text-center mb-4">
+                                    Nous aspirons à devenir un acteur majeur de la transition énergétique en Afrique...
+                                </p>
+                                {expandedCards.vision && (
+                                    <div className="space-y-4 text-left">
+                                        <p>
+                                            Notre ambition est de contribuer à bâtir un avenir où chaque foyer, chaque entreprise
+                                            et chaque collectivité peut s'alimenter en énergie fiable, durable et respectueuse de l'environnement.
+                                        </p>
+                                        <p>
+                                            Nous voulons démocratiser l'accès à l'énergie propre et participer activement au
+                                            développement économique et social du continent africain.
+                                        </p>
+                                    </div>
+                                )}
+                                <div className="text-center">
+                                    <button
+                                        onClick={() => toggleCard('vision')}
+                                        className="mt-4 inline-flex items-center gap-2 text-yellow-600 hover:text-yellow-700 font-medium transition-colors"
+                                    >
+                                        {expandedCards.vision ? (
+                                            <>
+                                                Réduire <ChevronUp className="w-4 h-4" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                Lire la suite <ChevronDown className="w-4 h-4" />
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Expertise Card */}
-                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-in fade-in slide-in-from-bottom duration-700" style={{ animationDelay: '150ms' }}>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2 animate-in fade-in slide-in-from-bottom duration-700" style={{ animationDelay: '150ms' }}>
                             <div className="text-center mb-6">
                                 <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                                     <Settings className="w-8 h-8 text-green-600" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-gray-900">Expertise</h3>
                             </div>
-                            <p className="text-gray-600 text-center leading-relaxed">
-                                Nos est dokums en rempliance sobre et novis lacialis.
-                                Incurius people birelogim interiétériométucien
-                                des qualitas energie qualicés.
-                            </p>
+                            <div className="text-gray-600 leading-relaxed">
+                                <p className="text-center mb-4">
+                                    Notre savoir-faire s'étend de l'installation de panneaux solaires aux infrastructures de recharge...
+                                </p>
+                                {expandedCards.expertise && (
+                                    <div className="space-y-4 text-left">
+                                        <p>
+                                            Notre savoir-faire s'étend de l'installation de panneaux solaires à la mise en place
+                                            d'infrastructures de recharge pour véhicules électriques, en passant par des solutions
+                                            complètes d'efficacité énergétique.
+                                        </p>
+                                        <p>
+                                            Grâce à l'innovation technologique et à une équipe d'experts passionnés, nous concevons
+                                            des solutions personnalisées adaptées aux besoins résidentiels, commerciaux et industriels.
+                                        </p>
+                                    </div>
+                                )}
+                                <div className="text-center">
+                                    <button
+                                        onClick={() => toggleCard('expertise')}
+                                        className="mt-4 inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium transition-colors"
+                                    >
+                                        {expandedCards.expertise ? (
+                                            <>
+                                                Réduire <ChevronUp className="w-4 h-4" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                Lire la suite <ChevronDown className="w-4 h-4" />
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Values Card */}
-                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-in fade-in slide-in-from-bottom duration-700" style={{ animationDelay: '300ms' }}>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2 animate-in fade-in slide-in-from-bottom duration-700" style={{ animationDelay: '300ms' }}>
                             <div className="text-center mb-6">
                                 <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
                                     <Heart className="w-8 h-8 text-blue-600" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-gray-900">Valeurs</h3>
                             </div>
-                            <p className="text-gray-600 text-center leading-relaxed">
-                                La print solar lacier e intégrina,
-                                mittere ed comunitausius
-                                nobire qualitator commentas
-                                en taapoline ecosystem nutris
-                                etespanic partenaris.
-                            </p>
+                            <div className="text-gray-600 leading-relaxed">
+                                <p className="text-center mb-4">
+                                    Nos valeurs fondamentales guident chacune de nos actions et décisions...
+                                </p>
+                                {expandedCards.values && (
+                                    <div className="space-y-4 text-left">
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-3 h-3 bg-blue-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                                            <p><span className="font-semibold text-gray-800">Durabilité :</span> nous plaçons la protection de l'environnement au cœur de nos actions.</p>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-3 h-3 bg-green-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                                            <p><span className="font-semibold text-gray-800">Innovation :</span> nous misons sur la technologie pour offrir des solutions énergétiques modernes et efficaces.</p>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-3 h-3 bg-yellow-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                                            <p><span className="font-semibold text-gray-800">Proximité :</span> nous accompagnons nos clients avec un service sur mesure et une écoute attentive.</p>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-3 h-3 bg-purple-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                                            <p><span className="font-semibold text-gray-800">Impact social :</span> nous croyons que l'accès à l'énergie propre est un levier de développement pour les communautés.</p>
+                                        </div>
+                                    </div>
+                                )}
+                                <div className="text-center">
+                                    <button
+                                        onClick={() => toggleCard('values')}
+                                        className="mt-4 inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                                    >
+                                        {expandedCards.values ? (
+                                            <>
+                                                Réduire <ChevronUp className="w-4 h-4" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                Voir nos valeurs <ChevronDown className="w-4 h-4" />
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

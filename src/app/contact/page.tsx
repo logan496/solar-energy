@@ -21,7 +21,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
         { label: 'Accueil', href: '/' },
         { label: 'À propos', href: '/about' },
         { label: 'Nos Services', href: '/services' },
-        { label: 'Projets & Réalisations', href: '/Projets' },
+        { label: 'projets & Réalisations', href: '/projets' },
         { label: 'Blog / Conseils énergie', href: '/tips' },
         { label: 'Contact', href: '/contact' }
     ];
@@ -58,7 +58,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                 <div className="container mx-auto px-4 py-12">
                     <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div className="grid lg:grid-cols-2 gap-0">
-                            {/* Formulaire de Contact */}
+                            {/* Formulaire de contact */}
                             <div className="p-8 lg:p-12">
                                 <h1 className="text-4xl lg:text-5xl font-black text-gray-900 mb-2">
                                     Contactez-nous
@@ -142,7 +142,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                 </div>
                             </div>
 
-                            {/* Informations de Contact */}
+                            {/* Informations de contact */}
                             <div className="bg-gray-50 p-8 lg:p-12">
                                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
                                     Nos informations

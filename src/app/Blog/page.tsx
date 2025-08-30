@@ -10,7 +10,7 @@ const BlogPage: React.FC = () => {
         { label: 'À propos', href: '/about' },
         { label: 'Nos Services', href: '/services' },
         { label: 'Blog', href: '/Blog' },
-        { label: 'Contact', href: '/Contact' }
+        { label: 'Contact', href: '/contact' }
     ];
 
     return (
