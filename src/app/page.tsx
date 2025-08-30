@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, ReactNode } from 'react';
 import { CheckCircle, Facebook, Linkedin, Menu, Sun, Twitter, X } from 'lucide-react';
+import Image from 'next/image';
 
 // Types pour NavigationItem
 interface NavigationItem {
@@ -154,11 +155,11 @@ const SolarLandingPage: React.FC = () => {
   ];
 
   const benefits: string[] = [
-    'Réduisez significativement vos factures d\'électricité',
+    'Réduisez significativement vos factures d&apos;électricité',
     'Gagnez en autonomie énergétique (partielle ou totale)',
     'Valorisez votre patrimoine immobilier',
-    'Agissez pour la protection de l\'environnement',
-    'Bénéficiez d\'un retour sur investissement attractif'
+    'Agissez pour la protection de l&apos;environnement',
+    'Bénéficiez d&apos;un retour sur investissement attractif'
   ];
 
   return (
@@ -176,10 +177,12 @@ const SolarLandingPage: React.FC = () => {
                   }}></div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <img
-                    src="/images/logo-solar.png"
-                    alt="Logo"
-                    className="h-16 w-18"
+                  <Image
+                      src="/images/logo-solar.png"
+                      alt="Logo Solar Energy Options"
+                      width={72}
+                      height={64}
+                      className="h-16 w-18"
                   />
                 </div>
               </div>
@@ -287,10 +290,12 @@ const SolarLandingPage: React.FC = () => {
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
                   <div className="aspect-[4/3] bg-gradient-to-br from-sky-200 via-sky-300 to-sky-400 relative">
                     {/* Image de panneau solaire réelle */}
-                    <img
+                    <Image
                         src="/images/panneaux_photovoltaiques.jpg"
                         alt="Panneaux solaires sur toit"
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        priority
                     />
 
                     {/* Fallback - Panneau solaire stylisé si pas d'image */}
@@ -407,8 +412,8 @@ const SolarLandingPage: React.FC = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Expertise Reconnue</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Notre équipe est composée de techniciens expérimentés et d'ingénieurs spécialisés dans les énergies renouvelables.
-                      Certifiés IRVE pour l'installation de bornes de recharge électrique, nous garantissons des services professionnels et fiables.
+                      Notre équipe est composée de techniciens expérimentés et d&apos;ingénieurs spécialisés dans les énergies renouvelables.
+                      Certifiés IRVE pour l&apos;installation de bornes de recharge électrique, nous garantissons des services professionnels et fiables.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -431,7 +436,7 @@ const SolarLandingPage: React.FC = () => {
                     <h3 className="text-3xl font-bold text-green-700">Qualité et Fiabilité</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Nous utilisons uniquement des équipements de marques reconnues et offrons des garanties étendues sur tous nos produits et services.
-                      Vous bénéficiez ainsi d'installations durables et performantes pour une tranquillité d'esprit maximale.
+                      Vous bénéficiez ainsi d&apos;installations durables et performantes pour une tranquillité d&apos;esprit maximale.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -474,7 +479,7 @@ const SolarLandingPage: React.FC = () => {
                     <h3 className="text-3xl font-bold text-green-700">Approche Personnalisée</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Chaque projet est unique. Nous analysons vos besoins pour vous proposer la solution la mieux adaptée à votre situation et votre budget,
-                      qu'il s'agisse d'une installation résidentielle, commerciale ou institutionnelle.
+                      qu&apos;il s&apos;agisse d&apos;une installation résidentielle, commerciale ou institutionnelle.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -498,7 +503,7 @@ const SolarLandingPage: React.FC = () => {
                     <p className="text-gray-700 text-lg leading-relaxed">
                       En choisissant Solar Energy Options, vous participez activement à la transition énergétique
                       et à la lutte contre le changement climatique. Nos solutions réduisent les émissions de CO2
-                      et préservent l'environnement pour les générations futures.
+                      et préservent l&apos;environnement pour les générations futures.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -507,7 +512,7 @@ const SolarLandingPage: React.FC = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
-                        <span className="text-gray-800 font-medium">Préservation de l'environnement</span>
+                        <span className="text-gray-800 font-medium">Préservation de l&apos;environnement</span>
                       </div>
                     </div>
                   </div>
@@ -516,7 +521,7 @@ const SolarLandingPage: React.FC = () => {
                       <div className="aspect-video bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
                         <div className="text-center text-white p-8">
                           <h4 className="text-2xl font-bold mb-4">Éco-Responsable</h4>
-                          <p className="text-lg">Pour un avenir durable et respectueux de l'environnement</p>
+                          <p className="text-lg">Pour un avenir durable et respectueux de l&apos;environnement</p>
                         </div>
                       </div>
                     </div>
@@ -580,10 +585,10 @@ const SolarLandingPage: React.FC = () => {
               <div className="text-center animate-on-scroll opacity-0 translate-y-12 transition-all duration-700 ease-out">
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-green-700">
-                    Rejoignez dès aujourd'hui la révolution énergétique !
+                    Rejoignez dès aujourd&apos;hui la révolution énergétique !
                   </h3>
                   <p className="text-xl text-gray-600 mb-8">
-                    Contribuez à un avenir plus durable pour l'Afrique avec Solar Energy Options
+                    Contribuez à un avenir plus durable pour l&apos;Afrique avec Solar Energy Options
                   </p>
                   <div className="inline-block">
                     <SolarButton

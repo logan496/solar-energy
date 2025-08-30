@@ -13,7 +13,7 @@ interface ProjectCardProps {
     category: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, category }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, category }) => {
     return (
         <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:-translate-y-2">
             {/* Image Container */}
@@ -77,13 +77,13 @@ export default function ProjectsRealizationsPage() {
         {
             image: "/commercial-solar.jpg",
             title: "Commercial Solar Rooftop",
-            description: "Système commercial de 50kW installé sur le toit d'un centre commercial avec retour sur investissement de 5 ans.",
+            description: "Système commercial de 50kW installé sur le toit d&apos;un centre commercial avec retour sur investissement de 5 ans.",
             category: "Commercial"
         },
         {
             image: "/solar-farm.jpg",
             title: "Solar Farm Development",
-            description: "Développement d'une ferme solaire de 2MW pour alimenter une communauté rurale entière.",
+            description: "Développement d&apos;une ferme solaire de 2MW pour alimenter une communauté rurale entière.",
             category: "Industriel"
         },
         {
@@ -95,13 +95,13 @@ export default function ProjectsRealizationsPage() {
         {
             image: "/school-solar.jpg",
             title: "École Primaire - Douala",
-            description: "Installation de 15kW pour une école primaire, permettant l'éclairage et l'alimentation des équipements informatiques.",
+            description: "Installation de 15kW pour une école primaire, permettant l&apos;éclairage et l&apos;alimentation des équipements informatiques.",
             category: "Éducation"
         },
         {
             image: "/hospital-solar.jpg",
             title: "Centre de Santé - Yaoundé",
-            description: "Système solaire hybride de 30kW avec batteries pour assurer l'alimentation continue d'un centre de santé.",
+            description: "Système solaire hybride de 30kW avec batteries pour assurer l&apos;alimentation continue d&apos;un centre de santé.",
             category: "Santé"
         }
     ];
@@ -156,7 +156,7 @@ export default function ProjectsRealizationsPage() {
                             </div>
                             <div className="space-y-2">
                                 <div className="text-4xl font-black">5+</div>
-                                <div className="text-lg opacity-90">Années d'Expérience</div>
+                                <div className="text-lg opacity-90">Années d&apos;Expérience</div>
                             </div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@ export default function ProjectsRealizationsPage() {
                                 Votre Projet Nous Intéresse !
                             </h2>
                             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                                Rejoignez nos clients satisfaits et commencez votre transition vers l'énergie solaire dès aujourd'hui
+                                Rejoignez nos clients satisfaits et commencez votre transition vers l&apos;énergie solaire dès aujourd&apos;hui
                             </p>
                             <button
                                 onClick={() => window.location.href = '/contact'}

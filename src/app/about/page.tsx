@@ -53,10 +53,10 @@ const AboutPage: React.FC = () => {
                                 Présentation de Solar Energy Options
                             </h2>
                             <p className="text-xl text-gray-600 leading-relaxed">
-                                Solar Energy Options est une entreprise camerounaise spécialisée dans l'efficacité énergétique et
+                                Solar Energy Options est une entreprise camerounaise spécialisée dans l&apos;efficacité énergétique et
                                 les solutions solaires durables. Nous répondons aux besoins énergétiques modernes en offrant
-                                des services de qualité supérieure, conçus pour réduire l'empreinte écologique tout en
-                                améliorant l'accès à l'énergie.
+                                des services de qualité supérieure, conçus pour réduire l&apos;empreinte écologique tout en
+                                améliorant l&apos;accès à l&apos;énergie.
                             </p>
                         </div>
 
@@ -105,10 +105,10 @@ const AboutPage: React.FC = () => {
                                     <div className="space-y-4 text-left">
                                         <p>
                                             Notre ambition est de contribuer à bâtir un avenir où chaque foyer, chaque entreprise
-                                            et chaque collectivité peut s'alimenter en énergie fiable, durable et respectueuse de l'environnement.
+                                            et chaque collectivité peut s&apos;alimenter en énergie fiable, durable et respectueuse de l&apos;environnement.
                                         </p>
                                         <p>
-                                            Nous voulons démocratiser l'accès à l'énergie propre et participer activement au
+                                            Nous voulons démocratiser l&apos;accès à l&apos;énergie propre et participer activement au
                                             développement économique et social du continent africain.
                                         </p>
                                     </div>
@@ -142,17 +142,17 @@ const AboutPage: React.FC = () => {
                             </div>
                             <div className="text-gray-600 leading-relaxed">
                                 <p className="text-center mb-4">
-                                    Notre savoir-faire s'étend de l'installation de panneaux solaires aux infrastructures de recharge...
+                                    Notre savoir-faire s&apos;étend de l&apos;installation de panneaux solaires aux infrastructures de recharge...
                                 </p>
                                 {expandedCards.expertise && (
                                     <div className="space-y-4 text-left">
                                         <p>
-                                            Notre savoir-faire s'étend de l'installation de panneaux solaires à la mise en place
-                                            d'infrastructures de recharge pour véhicules électriques, en passant par des solutions
-                                            complètes d'efficacité énergétique.
+                                            Notre savoir-faire s&apos;étend de l&apos;installation de panneaux solaires à la mise en place
+                                            d&apos;infrastructures de recharge pour véhicules électriques, en passant par des solutions
+                                            complètes d&apos;efficacité énergétique.
                                         </p>
                                         <p>
-                                            Grâce à l'innovation technologique et à une équipe d'experts passionnés, nous concevons
+                                            Grâce à l&apos;innovation technologique et à une équipe d&apos;experts passionnés, nous concevons
                                             des solutions personnalisées adaptées aux besoins résidentiels, commerciaux et industriels.
                                         </p>
                                     </div>
@@ -192,7 +192,7 @@ const AboutPage: React.FC = () => {
                                     <div className="space-y-4 text-left">
                                         <div className="flex items-start gap-3">
                                             <div className="w-3 h-3 bg-blue-500 rounded-full mt-1.5 flex-shrink-0"></div>
-                                            <p><span className="font-semibold text-gray-800">Durabilité :</span> nous plaçons la protection de l'environnement au cœur de nos actions.</p>
+                                            <p><span className="font-semibold text-gray-800">Durabilité :</span> nous plaçons la protection de l&apos;environnement au cœur de nos actions.</p>
                                         </div>
                                         <div className="flex items-start gap-3">
                                             <div className="w-3 h-3 bg-green-500 rounded-full mt-1.5 flex-shrink-0"></div>
@@ -204,7 +204,7 @@ const AboutPage: React.FC = () => {
                                         </div>
                                         <div className="flex items-start gap-3">
                                             <div className="w-3 h-3 bg-purple-500 rounded-full mt-1.5 flex-shrink-0"></div>
-                                            <p><span className="font-semibold text-gray-800">Impact social :</span> nous croyons que l'accès à l'énergie propre est un levier de développement pour les communautés.</p>
+                                            <p><span className="font-semibold text-gray-800">Impact social :</span> nous croyons que l&apos;accès à l&apos;énergie propre est un levier de développement pour les communautés.</p>
                                         </div>
                                     </div>
                                 )}

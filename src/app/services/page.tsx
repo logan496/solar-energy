@@ -1,9 +1,9 @@
 "use client"
 
 import { NavigationItem } from "@/utilis/types";
-import {BarChart3, Search, Sun, Users, Lightbulb, ChevronDown, ChevronUp, Zap } from "lucide-react";
+import { Search, Sun, Users, Lightbulb, ChevronDown, ChevronUp, Zap } from "lucide-react";
 import { COLORS } from "../COLORS";
-import {NavBar} from "@/components/layout/NavBar";
+import { NavBar } from "@/components/layout/NavBar";
 import React, { useState } from "react";
 
 interface ServiceCardProps {
@@ -127,13 +127,13 @@ export default function ServicesPage() {
             title: "Audit énergétique",
             subtitle: "Analyse complète pour réduire vos coûts",
             shortDescription: "Comprenez exactement où votre énergie est consommée et identifiez les économies possibles.",
-            fullDescription: "Notre audit complet vous permet d'analyser votre consommation, identifier les sources de gaspillage et recevoir des recommandations personnalisées.",
+            fullDescription: "Notre audit complet vous permet d&apos;analyser votre consommation, identifier les sources de gaspillage et recevoir des recommandations personnalisées.",
             benefits: [
                 "Meilleure efficacité énergétique",
                 "Conseils sur mesure",
                 "Retour sur investissement optimisé"
             ],
-            ctaText: "Planifiez votre audit dès aujourd'hui !",
+            ctaText: "Planifiez votre audit dès aujourd&apos;hui !",
             color: COLORS.jauneSolaire
         },
         {
@@ -141,13 +141,13 @@ export default function ServicesPage() {
             icon: <Sun size={32} />,
             title: "Conception et installation solaire",
             subtitle: "Panneaux solaires sur mesure pour tous les besoins",
-            shortDescription: "Passez à l'énergie solaire avec des solutions fiables et performantes.",
+            shortDescription: "Passez à l&apos;énergie solaire avec des solutions fiables et performantes.",
             fullDescription: "Nous installons vos panneaux photovoltaïques pour particuliers, entreprises et institutions publiques, incluant étude de faisabilité, dimensionnement, installation par des techniciens certifiés, mise en service et formation.",
             benefits: [
                 "Réduction de vos factures",
                 "Augmentation de votre autonomie énergétique",
                 "Valorisation de votre patrimoine",
-                "Contribution à la protection de l'environnement",
+                "Contribution à la protection de l&apos;environnement",
                 "Retour sur investissement attractif"
             ],
             ctaText: "Demandez votre devis personnalisé !",
@@ -156,10 +156,10 @@ export default function ServicesPage() {
         {
             id: "eclairage-led-efficacite",
             icon: <Lightbulb size={32} />,
-            title: "Éclairage LED et solutions d'efficacité énergétique",
+            title: "Éclairage LED et solutions d&apos;efficacité énergétique",
             subtitle: "Optimisez votre consommation et modernisez vos installations",
-            shortDescription: "Modernisez vos installations et réduisez votre consommation avec nos solutions LED et d'efficacité énergétique.",
-            fullDescription: "Remplacez vos éclairages traditionnels, optimisez vos équipements et profitez d'un éclairage de qualité.",
+            shortDescription: "Modernisez vos installations et réduisez votre consommation avec nos solutions LED et d&apos;efficacité énergétique.",
+            fullDescription: "Remplacez vos éclairages traditionnels, optimisez vos équipements et profitez d&apos;un éclairage de qualité.",
             benefits: [
                 "Diminution de vos factures",
                 "Amélioration de votre confort",
@@ -174,13 +174,13 @@ export default function ServicesPage() {
             title: "Installation de bornes de recharge électrique",
             subtitle: "Recharge sécurisée pour véhicules électriques",
             shortDescription: "Rechargez vos véhicules électriques facilement grâce à nos bornes sécurisées et performantes.",
-            fullDescription: "Nous assurons l'installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
+            fullDescription: "Nous assurons l&apos;installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
             benefits: [
                 "Mobilité durable",
                 "Solution clé en main fiable",
                 "Recharge sécurisée pour vos véhicules électriques"
             ],
-            ctaText: "Demandez votre installation aujourd'hui !",
+            ctaText: "Demandez votre installation aujourd&apos;hui !",
             color: COLORS.bleuCiel
         },
         {
@@ -188,12 +188,12 @@ export default function ServicesPage() {
             icon: <Users size={32} />,
             title: "Formation et conseil",
             subtitle: "Expertise et accompagnement personnalisé",
-            shortDescription: "Maîtrisez l'énergie solaire et optimisez vos installations grâce à nos formations et conseils personnalisés.",
-            fullDescription: "Nous accompagnons particuliers et professionnels pour maximiser les économies, prolonger la durée de vie des installations et améliorer l'efficacité énergétique globale.",
+            shortDescription: "Maîtrisez l&apos;énergie solaire et optimisez vos installations grâce à nos formations et conseils personnalisés.",
+            fullDescription: "Nous accompagnons particuliers et professionnels pour maximiser les économies, prolonger la durée de vie des installations et améliorer l&apos;efficacité énergétique globale.",
             benefits: [
                 "Expertise concrète",
                 "Conseils adaptés",
-                "Impact tangible sur vos coûts et l'environnement"
+                "Impact tangible sur vos coûts et l&apos;environnement"
             ],
             ctaText: "Planifiez votre formation maintenant !",
             color: COLORS.jauneSolaire
@@ -214,7 +214,7 @@ export default function ServicesPage() {
                         </h1>
                         <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-8"></div>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            Découvrez notre gamme complète de services dédiés à l'énergie solaire et à l'efficacité énergétique
+                            Découvrez notre gamme complète de services dédiés à l&apos;énergie solaire et à l&apos;efficacité énergétique
                         </p>
                     </div>
 
@@ -236,7 +236,7 @@ export default function ServicesPage() {
                     <div className="text-center mt-16 animate-in fade-in slide-in-from-bottom duration-700">
                         <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-8 max-w-4xl mx-auto text-white">
                             <h2 className="text-3xl font-bold mb-4">
-                                Prêt à passer à l'énergie solaire ?
+                                Prêt à passer à l&apos;énergie solaire ?
                             </h2>
                             <p className="text-xl mb-8 opacity-90">
                                 Contactez nos experts pour un devis personnalisé et gratuit
