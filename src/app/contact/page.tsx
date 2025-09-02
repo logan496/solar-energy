@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { NavBar } from "@/components/layout/NavBar";
 import { Phone, Mail, MapPin } from "lucide-react";
 import {NavigationItem} from "@/utilis/types";
+import {Footer} from "@/components/layout/footer";
 
 interface ContactPageProps {
     contact?: string;
@@ -12,6 +13,7 @@ interface ContactPageProps {
 const ContactPage: React.FC<ContactPageProps> = () => {
     const [formData, setFormData] = useState({
         name: '',
+        phone: '',
         email: '',
         subject: '',
         message: ''
@@ -44,6 +46,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
 
         setFormData({
             name: '',
+            phone: '',
             email: '',
             subject: '',
             message: ''
@@ -80,6 +83,22 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                             onChange={handleInputChange}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-3 focus:ring-green-500 focus:border-transparent bg-gray-50 transition-colors hover:bg-white"
                                             placeholder="Votre nom complet"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                                            Numéro de telephone *
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="phone"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-3 focus:ring-green-500 focus:border-transparent bg-gray-50 transition-colors hover:bg-white"
+                                            placeholder="Votre numéro de téléphonne"
                                             required
                                         />
                                     </div>
@@ -123,7 +142,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                         <textarea
                                             id="message"
                                             name="message"
-                                            rows={6}
+                                            rows={5}
                                             value={formData.message}
                                             onChange={handleInputChange}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-50 transition-colors resize-none hover:bg-white"
@@ -159,7 +178,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                         <div>
                                             <p className="text-sm text-gray-500">Téléphone</p>
                                             <span className="text-gray-800 font-medium">
-                                                +237 678 901 234
+                                                 + 237 683 16 61 22
                                             </span>
                                         </div>
                                     </div>
@@ -171,7 +190,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                         <div>
                                             <p className="text-sm text-gray-500">Email</p>
                                             <span className="text-gray-800 font-medium">
-                                                contact@solarenergy.cm
+                                                 infos@solarenergyoption.com
                                             </span>
                                         </div>
                                     </div>
@@ -183,7 +202,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                                         <div>
                                             <p className="text-sm text-gray-500">Adresse</p>
                                             <span className="text-gray-800 font-medium">
-                                                123 Avenue de l&apos;Énergie, Douala, Cameroun
+                                                PK13, Douala, Cameroun
                                             </span>
                                         </div>
                                     </div>
@@ -242,6 +261,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
                     </div>
                 </div>
             </main>
+            <Footer/>
         </div>
     );
 };

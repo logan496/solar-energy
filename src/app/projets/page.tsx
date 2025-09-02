@@ -5,6 +5,7 @@ import { NavBar } from "@/components/layout/NavBar";
 import React from "react";
 import { COLORS } from "../COLORS";
 import {BarChart3, Lightbulb, Sun} from "lucide-react";
+import {Footer} from "@/components/layout/footer";
 
 interface ProjectCardProps {
     image: string;
@@ -60,11 +61,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, category 
 
 export default function ProjectsRealizationsPage() {
     const navigationItems: NavigationItem[] = [
-        { label: "Accueil", href: "/" },
-        { label: "À propos", href: "/about" },
-        { label: "Services", href: "/services" },
-        { label: "Contact", href: "/contact" },
-        { label: "Projets", href: "/projets" },
+        { label: 'Accueil', href: '/' },
+        { label: 'À propos', href: '/about' },
+        { label: 'Nos Services', href: '/services' },
+        { label: 'projets & Réalisations', href: '/projets' },
+        { label: 'Blog / Conseils énergie', href: '/tips' },
+        { label: 'Contact', href: '/contact' }
     ];
 
     const projects = [
@@ -143,15 +145,15 @@ export default function ProjectsRealizationsPage() {
                         <h2 className="text-3xl font-bold text-center mb-8">Nos Chiffres Clés</h2>
                         <div className="grid md:grid-cols-4 gap-8 text-center">
                             <div className="space-y-2">
-                                <div className="text-4xl font-black">50+</div>
+                                <div className="text-4xl font-black">253+</div>
                                 <div className="text-lg opacity-90">Projets Réalisés</div>
                             </div>
                             <div className="space-y-2">
-                                <div className="text-4xl font-black">15MW</div>
-                                <div className="text-lg opacity-90">Capacité Totale Installée</div>
+                                <div className="text-4xl font-black">53</div>
+                                <div className="text-lg opacity-90">Employés formés</div>
                             </div>
                             <div className="space-y-2">
-                                <div className="text-4xl font-black">98%</div>
+                                <div className="text-4xl font-black">93.8%</div>
                                 <div className="text-lg opacity-90">Satisfaction Client</div>
                             </div>
                             <div className="space-y-2">
@@ -216,7 +218,9 @@ export default function ProjectsRealizationsPage() {
                         </div>
                     </div>
                 </div>
+
             </div>
+            <Footer/>
 
             <style jsx>{`
                 @keyframes fadeIn {

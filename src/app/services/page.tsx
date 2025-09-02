@@ -113,11 +113,12 @@ export default function ServicesPage() {
     };
 
     const navigationItems: NavigationItem[] = [
-        { label: "Accueil", href: "/" },
-        { label: "À propos", href: "/about" },
-        { label: "Services", href: "/services" },
-        { label: "Contact", href: "/contact" },
-        { label: "Projets", href: "/projets" }
+        { label: 'Accueil', href: '/' },
+        { label: 'À propos', href: '/about' },
+        { label: 'Nos Services', href: '/services' },
+        { label: 'projets & Réalisations', href: '/projets' },
+        { label: 'Blog / Conseils énergie', href: '/tips' },
+        { label: 'Contact', href: '/contact' }
     ];
 
     const services = [

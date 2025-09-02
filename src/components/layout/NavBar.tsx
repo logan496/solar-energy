@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Phone, Mail, MapPin, Menu, X } from "lucide-react";
-import {COLORS} from "@/utilis/colors";
+import {COLOR_VARIANTS, COLORS} from "@/utilis/colors";
 import {NavigationItem} from "@/utilis/types";
 
 
@@ -19,7 +19,7 @@ export const NavBar: React.FC<NavBarProps> = ({
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className="fixed top-0 w-full z-50" style={{backgroundColor: COLORS.vertEnergie}}>
+        <div className="fixed top-0 w-full z-50" style={{backgroundColor: COLOR_VARIANTS.vertEnergie["800"]}}>
             <div className="container mx-auto px-4 py-4">
                 <div className="flex justify-between items-center">
                     <span className="text-3xl font-black text-white">{logo}</span>

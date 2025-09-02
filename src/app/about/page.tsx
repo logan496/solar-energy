@@ -5,6 +5,7 @@ import {NavigationItem} from "@/utilis/types";
 import React, { useState } from "react";
 import {Heart, Lightbulb, Settings, Sun, ChevronDown, ChevronUp} from "lucide-react";
 import { COLORS } from "../COLORS";
+import {Footer} from "@/components/layout/footer";
 
 // Pas d'interface nécessaire pour cette page
 // interface AboutPageProps peut être ajoutée plus tard si nécessaire
@@ -26,9 +27,10 @@ const AboutPage: React.FC = () => {
     const navigationItems: NavigationItem[] = [
         { label: 'Accueil', href: '/' },
         { label: 'À propos', href: '/about' },
-        { label: 'Services', href: '/services' },
-        { label: 'Contact', href: '/contact' },
-        { label: 'Projets & réalisations', href: '/projets' },
+        { label: 'Nos Services', href: '/services' },
+        { label: 'projets & Réalisations', href: '/projets' },
+        { label: 'Blog / Conseils énergie', href: '/tips' },
+        { label: 'Contact', href: '/contact' }
     ];
 
     return (
@@ -233,19 +235,19 @@ const AboutPage: React.FC = () => {
                         <h2 className="text-3xl font-bold text-center mb-8">Nos Réalisations</h2>
                         <div className="grid md:grid-cols-4 gap-8 text-center">
                             <div>
-                                <div className="text-4xl font-black mb-2">500+</div>
+                                <div className="text-4xl font-black mb-2">253+</div>
                                 <div className="text-lg opacity-90">Installations</div>
                             </div>
                             <div>
-                                <div className="text-4xl font-black mb-2">50MW</div>
-                                <div className="text-lg opacity-90">Capacité Installée</div>
+                                <div className="text-4xl font-black mb-2">53</div>
+                                <div className="text-lg opacity-90">Employés formés</div>
                             </div>
                             <div>
-                                <div className="text-4xl font-black mb-2">95%</div>
+                                <div className="text-4xl font-black mb-2">93.8%</div>
                                 <div className="text-lg opacity-90">Satisfaction Client</div>
                             </div>
                             <div>
-                                <div className="text-4xl font-black mb-2">10+</div>
+                                <div className="text-4xl font-black mb-2">5+</div>
                                 <div className="text-lg opacity-90">Années d&apos;Expérience</div>
                             </div>
                         </div>
@@ -276,6 +278,7 @@ const AboutPage: React.FC = () => {
                     </div>
                 </div>
             </main>
+            <Footer/>
 
             <style jsx>{`
                 .animate-in {

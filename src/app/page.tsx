@@ -3,6 +3,8 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import { CheckCircle, Facebook, Linkedin, Menu, Sun, Twitter, X } from 'lucide-react';
 import Image from 'next/image';
+import {COLOR_VARIANTS} from "@/utilis/colors";
+import {Footer} from "@/components/layout/footer";
 
 // Types pour NavigationItem
 interface NavigationItem {
@@ -128,8 +130,13 @@ const SolarLandingPage: React.FC = () => {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
+              // Élément visible - déclencher l'animation
               entry.target.classList.add('opacity-100', 'translate-y-0', 'translate-x-0');
               entry.target.classList.remove('opacity-0', 'translate-y-12', '-translate-x-12', 'translate-x-12');
+            } else {
+              // Élément non visible - remettre à l'état initial pour permettre la réanimation
+              entry.target.classList.remove('opacity-100', 'translate-y-0', 'translate-x-0');
+              entry.target.classList.add('opacity-0', 'translate-y-12', '-translate-x-12', 'translate-x-12');
             }
           });
         },
@@ -146,20 +153,20 @@ const SolarLandingPage: React.FC = () => {
   }, []);
 
   const navigationItems: NavigationItem[] = [
-    { label: 'Accueil', href: '#' },
+    { label: 'Accueil', href: '/' },
     { label: 'À propos', href: '/about' },
     { label: 'Nos Services', href: '/services' },
-    { label: 'projets et réalisations', href: '/projets' },
-    { label: 'Réglementations et contacts', href: '#regulations' },
+    { label: 'projets & Réalisations', href: '/projets' },
+    { label: 'Blog / Conseils énergie', href: '/tips' },
     { label: 'Contact', href: '/contact' }
   ];
 
   const benefits: string[] = [
-    'Réduisez significativement vos factures d&apos;électricité',
+    "Réduisez significativement vos factures d'électricité",
     'Gagnez en autonomie énergétique (partielle ou totale)',
     'Valorisez votre patrimoine immobilier',
-    'Agissez pour la protection de l&apos;environnement',
-    'Bénéficiez d&apos;un retour sur investissement attractif'
+    "Agissez pour la protection de l'environnement",
+    "Bénéficiez d'un retour sur investissement attractif"
   ];
 
   return (
@@ -238,12 +245,10 @@ const SolarLandingPage: React.FC = () => {
               {/* Left Content */}
               <div className="space-y-8">
                 <div>
-                  <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: COLORS.vertEnergie }}>
+                  <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: COLOR_VARIANTS.vertEnergie["800"] }}>
                     ÉNERGIE SOLAIRE
                     <br />
-                    <span style={{ color: '#66BB6A' }}>POUR VOTRE</span>
-                    <br />
-                    <span style={{ color: '#81C784' }}>MAISON</span>
+                    <span style={{ color: COLOR_VARIANTS.vertEnergie["800"] }}>POUR VOUS</span>
                   </h1>
 
                   <p className="text-lg text-gray-600 mb-8 max-w-md">
@@ -404,7 +409,7 @@ const SolarLandingPage: React.FC = () => {
                       <div className="aspect-video bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
                         <div className="text-center text-white p-8">
                           <h4 className="text-2xl font-bold mb-4">Équipe Experte</h4>
-                          <p className="text-lg">Techniciens certifiés IRVE et ingénieurs spécialisés</p>
+                          <p className="text-lg">Techniciens qualifiés et ingénieurs spécialisés</p>
                         </div>
                       </div>
                     </div>
@@ -413,12 +418,12 @@ const SolarLandingPage: React.FC = () => {
                     <h3 className="text-3xl font-bold text-green-700">Expertise Reconnue</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Notre équipe est composée de techniciens expérimentés et d&apos;ingénieurs spécialisés dans les énergies renouvelables.
-                      Certifiés IRVE pour l&apos;installation de bornes de recharge électrique, nous garantissons des services professionnels et fiables.
+                      Qualifiés pour l&apos;installation de bornes de recharge électrique, nous garantissons des services professionnels et fiables.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
-                        <span className="text-gray-800 font-medium">Techniciens certifiés IRVE</span>
+                        <span className="text-gray-800 font-medium">Techniciens Qualifiés</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
@@ -606,33 +611,7 @@ const SolarLandingPage: React.FC = () => {
         </main>
 
         {/* Footer */}
-        <footer className="bg-gray-50 border-t border-gray-200 py-8">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8 items-center">
-              <div className="text-center md:text-left">
-                <p className="text-gray-600 text-sm">Solar Energy Options</p>
-                <p className="text-gray-600 text-sm">Solutions énergétiques durables</p>
-              </div>
-
-              <div className="text-center">
-                <p className="text-gray-600 text-sm">Téléphone: +237 XX XX XX XX</p>
-                <p className="text-gray-600 text-sm">Email: contact@solar-energy.cm</p>
-              </div>
-
-              <div className="flex justify-center md:justify-end space-x-4">
-                <a href="#" className="p-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-110 transform">
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a href="#" className="p-2 text-gray-600 hover:text-blue-400 transition-colors duration-300 hover:scale-110 transform">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="#" className="p-2 text-gray-600 hover:text-blue-700 transition-colors duration-300 hover:scale-110 transform">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
   );
 };

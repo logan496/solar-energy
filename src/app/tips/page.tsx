@@ -1,7 +1,9 @@
 "use client"
 
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Phone, Mail, MapPin, Menu, X, Search, Sun, Wind, Home, Zap } from "lucide-react";
+import Image from "next/image";
+import {Footer} from "@/components/layout/footer";
 
 // Couleurs définies
 const COLORS = {
@@ -34,19 +36,53 @@ interface NavBarProps {
 // Composant NavBar
 const NavBar: React.FC<NavBarProps> = ({
                                            navigationItems,
-                                           logo = "SOLAR"
                                        }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    useEffect(() => {
+        const style = document.createElement('style');
+        style.textContent = `
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .animate-spin-slow {
+        animation: spin-slow 8s linear infinite;
+      }
+    `;
+        document.head.appendChild(style);
+
+        return () => {
+            document.head.removeChild(style);
+        };
+    }, []);
 
     return (
         <div className="w-full bg-white shadow-sm border-b">
             <div className="container mx-auto px-4 py-4">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-yellow-400 rounded flex items-center justify-center">
-                            <span className="text-white font-bold text-lg">#</span>
+                        <div className="flex items-center space-x-2">
+                            <div className="relative">
+                                <Sun className="w-12 h-12 text-yellow-500 animate-spin-slow" />
+                                <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-20" style={{
+                                    animation: 'pulse 2s ease-in-out infinite'
+                                }}></div>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <Image
+                                    src="/images/logo-solar.png"
+                                    alt="Logo Solar Energy Options"
+                                    width={72}
+                                    height={64}
+                                    className="h-16 w-18"
+                                />
+                            </div>
                         </div>
-                        <span className="text-2xl font-bold" style={{color: COLORS.vertEnergie}}>{logo}</span>
                     </div>
 
                     <nav className="hidden lg:flex space-x-8">
@@ -144,10 +180,12 @@ const FilterButton: React.FC<FilterButtonProps> = ({ label, isActive, onClick })
 // Composant principal
 export default function EnergyTipsPage() {
     const navigationItems: NavigationItem[] = [
-        { label: "Home", href: "/" },
-        { label: "About", href: "/about" },
-        { label: "Blog", href: "/" },
-        { label: "Contact", href: "/contact" }
+        { label: 'Accueil', href: '/' },
+        { label: 'À propos', href: '/about' },
+        { label: 'Nos Services', href: '/services' },
+        { label: 'projets & Réalisations', href: '/projets' },
+        { label: 'Blog / Conseils énergie', href: '/tips' },
+        { label: 'Contact', href: '/contact' }
     ];
 
     const [activeFilter, setActiveFilter] = useState("All");
@@ -192,6 +230,7 @@ export default function EnergyTipsPage() {
     const filteredTips = activeFilter === "All"
         ? tips
         : tips.filter(tip => tip.category === activeFilter);
+
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -258,6 +297,7 @@ export default function EnergyTipsPage() {
                     </div>
                 </div>
             </div>
+            <Footer />
 
             <style jsx>{`
         @keyframes fadeIn {
