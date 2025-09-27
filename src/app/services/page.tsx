@@ -1,14 +1,14 @@
 "use client"
 
 import { NavigationItem } from "@/utilis/types";
-import { Search, Sun, Users, Lightbulb, ChevronDown, ChevronUp, Zap } from "lucide-react";
-import { COLORS } from "../COLORS";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { NavBar } from "@/components/layout/NavBar";
 import React, { useState } from "react";
 
 interface ServiceCardProps {
     id: string;
-    icon: React.ReactNode;
+    imageUrl: string;
+    imageAlt: string;
     title: string;
     subtitle: string;
     shortDescription: string;
@@ -16,24 +16,67 @@ interface ServiceCardProps {
     benefits: string[];
     ctaText: string;
     color: string;
+    bgColor: string;
     isExpanded: boolean;
     onToggle: () => void;
     onCTAClick: () => void;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
-                                                     id, icon, title, subtitle, shortDescription, fullDescription, benefits, ctaText, color, isExpanded, onToggle, onCTAClick
+                                                     id,
+                                                     imageUrl,
+                                                     imageAlt,
+                                                     title,
+                                                     subtitle,
+                                                     shortDescription,
+                                                     fullDescription,
+                                                     benefits,
+                                                     ctaText,
+                                                     color,
+                                                     bgColor,
+                                                     isExpanded,
+                                                     onToggle,
+                                                     onCTAClick
                                                  }) => {
     return (
         <div id={id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 group hover:-translate-y-2">
-            <div className="flex flex-col lg:flex-row items-start space-y-6 lg:space-y-0 lg:space-x-6">
+            <div className="flex flex-col lg:flex-row items-start space-y-6 lg:space-y-0 lg:space-x-8">
                 <div
-                    className="p-4 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
-                    style={{ backgroundColor: color + '20' }}
+                    className="w-40 h-32 lg:w-48 lg:h-36 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300 relative overflow-hidden shadow-md"
+                    style={{ backgroundColor: `${bgColor}15` }}
                 >
-                    <div style={{ color: color }}>
-                        {icon}
-                    </div>
+                    <img
+                        src={imageUrl}
+                        alt={imageAlt}
+                        className="w-full h-full object-cover rounded-xl transition-all duration-300 group-hover:scale-110"
+                        style={{
+                            filter: 'none',
+                            objectFit: 'cover'
+                        }}
+                        onError={(e) => {
+                            // Image de fallback en cas d'erreur de chargement
+                            const target = e.target as HTMLImageElement;
+                            target.src = `data:image/svg+xml,${encodeURIComponent(`
+                                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="144" viewBox="0 0 24 24" fill="none" stroke="${bgColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21,15 16,10 5,21"/>
+                                </svg>
+                            `)}`;
+                            target.style.padding = '32px';
+                            target.style.backgroundColor = `${bgColor}20`;
+                        }}
+                    />
+                    {/* Effet de superposition colorée au hover */}
+                    <div
+                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-all duration-300"
+                        style={{ backgroundColor: bgColor }}
+                    ></div>
+                    {/* Effet de bordure colorée */}
+                    <div
+                        className="absolute inset-0 rounded-xl border-2 opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+                        style={{ borderColor: bgColor }}
+                    ></div>
                 </div>
                 <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors duration-300">
@@ -78,7 +121,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
                     <button
                         onClick={onToggle}
-                        className="mt-4 inline-flex items-center gap-2 font-medium transition-colors"
+                        className="mt-4 inline-flex items-center gap-2 font-medium transition-colors hover:underline"
                         style={{ color: color }}
                     >
                         {isExpanded ? (
@@ -124,80 +167,90 @@ export default function ServicesPage() {
     const services = [
         {
             id: "audit-energetique",
-            icon: <Search size={32} />,
+            imageUrl: "/images/bornes1.jpeg",
+            imageAlt: "Audit énergétique - Analyse complète de consommation",
             title: "Audit énergétique",
             subtitle: "Analyse complète pour réduire vos coûts",
             shortDescription: "Comprenez exactement où votre énergie est consommée et identifiez les économies possibles.",
-            fullDescription: "Notre audit complet vous permet d&apos;analyser votre consommation, identifier les sources de gaspillage et recevoir des recommandations personnalisées.",
+            fullDescription: "Notre audit complet vous permet d'analyser votre consommation, identifier les sources de gaspillage et recevoir des recommandations personnalisées.",
             benefits: [
                 "Meilleure efficacité énergétique",
                 "Conseils sur mesure",
                 "Retour sur investissement optimisé"
             ],
-            ctaText: "Planifiez votre audit dès aujourd&apos;hui !",
-            color: COLORS.jauneSolaire
+            ctaText: "Planifiez votre audit dès aujourd'hui !",
+            color: "#FFC107",
+            bgColor: "#FFC107"
         },
         {
             id: "conception-installation-solaire",
-            icon: <Sun size={32} />,
+            imageUrl: "/images/bornes2.jpeg",
+            imageAlt: "Installation panneaux solaires photovoltaïques",
             title: "Conception et installation solaire",
             subtitle: "Panneaux solaires sur mesure pour tous les besoins",
-            shortDescription: "Passez à l&apos;énergie solaire avec des solutions fiables et performantes.",
+            shortDescription: "Passez à l'énergie solaire avec des solutions fiables et performantes.",
             fullDescription: "Nous installons vos panneaux photovoltaïques pour particuliers, entreprises et institutions publiques, incluant étude de faisabilité, dimensionnement, installation par des techniciens certifiés, mise en service et formation.",
             benefits: [
                 "Réduction de vos factures",
                 "Augmentation de votre autonomie énergétique",
                 "Valorisation de votre patrimoine",
-                "Contribution à la protection de l&apos;environnement",
+                "Contribution à la protection de l'environnement",
                 "Retour sur investissement attractif"
             ],
             ctaText: "Demandez votre devis personnalisé !",
-            color: COLORS.bleuCiel
+            color: "#2196F3",
+            bgColor: "#2196F3"
         },
         {
             id: "eclairage-led-efficacite",
-            icon: <Lightbulb size={32} />,
-            title: "Éclairage LED et solutions d&apos;efficacité énergétique",
+            imageUrl: "/images/led-icon.png",
+            imageAlt: "Solutions d'éclairage LED efficaces",
+            title: "Éclairage LED et solutions d'efficacité énergétique",
             subtitle: "Optimisez votre consommation et modernisez vos installations",
-            shortDescription: "Modernisez vos installations et réduisez votre consommation avec nos solutions LED et d&apos;efficacité énergétique.",
-            fullDescription: "Remplacez vos éclairages traditionnels, optimisez vos équipements et profitez d&apos;un éclairage de qualité.",
+            shortDescription: "Modernisez vos installations et réduisez votre consommation avec nos solutions LED et d'efficacité énergétique.",
+            fullDescription: "Remplacez vos éclairages traditionnels, optimisez vos équipements et profitez d'un éclairage de qualité.",
             benefits: [
                 "Diminution de vos factures",
                 "Amélioration de votre confort",
                 "Contribution à un environnement durable"
             ],
             ctaText: "Découvrez nos solutions dès maintenant !",
-            color: COLORS.jauneSolaire
+            color: "#FF9800",
+            bgColor: "#FF9800"
         },
         {
             id: "bornes-recharge-electrique",
-            icon: <Zap size={32} />,
+            imageUrl: "/images/charging-icon.png",
+            imageAlt: "Bornes de recharge pour véhicules électriques",
             title: "Installation de bornes de recharge électrique",
             subtitle: "Recharge sécurisée pour véhicules électriques",
             shortDescription: "Rechargez vos véhicules électriques facilement grâce à nos bornes sécurisées et performantes.",
-            fullDescription: "Nous assurons l&apos;installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
+            fullDescription: "Nous assurons l'installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
             benefits: [
                 "Mobilité durable",
                 "Solution clé en main fiable",
                 "Recharge sécurisée pour vos véhicules électriques"
             ],
-            ctaText: "Demandez votre installation aujourd&apos;hui !",
-            color: COLORS.bleuCiel
+            ctaText: "Demandez votre installation aujourd'hui !",
+            color: "#4CAF50",
+            bgColor: "#4CAF50"
         },
         {
             id: "formation-conseil",
-            icon: <Users size={32} />,
+            imageUrl: "/images/training-icon.png",
+            imageAlt: "Formation et conseil en énergie solaire",
             title: "Formation et conseil",
             subtitle: "Expertise et accompagnement personnalisé",
-            shortDescription: "Maîtrisez l&apos;énergie solaire et optimisez vos installations grâce à nos formations et conseils personnalisés.",
-            fullDescription: "Nous accompagnons particuliers et professionnels pour maximiser les économies, prolonger la durée de vie des installations et améliorer l&apos;efficacité énergétique globale.",
+            shortDescription: "Maîtrisez l'énergie solaire et optimisez vos installations grâce à nos formations et conseils personnalisés.",
+            fullDescription: "Nous accompagnons particuliers et professionnels pour maximiser les économies, prolonger la durée de vie des installations et améliorer l'efficacité énergétique globale.",
             benefits: [
                 "Expertise concrète",
                 "Conseils adaptés",
-                "Impact tangible sur vos coûts et l&apos;environnement"
+                "Impact tangible sur vos coûts et l'environnement"
             ],
             ctaText: "Planifiez votre formation maintenant !",
-            color: COLORS.jauneSolaire
+            color: "#9C27B0",
+            bgColor: "#9C27B0"
         }
     ];
 
@@ -215,7 +268,7 @@ export default function ServicesPage() {
                         </h1>
                         <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-8"></div>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            Découvrez notre gamme complète de services dédiés à l&apos;énergie solaire et à l&apos;efficacité énergétique
+                            Découvrez notre gamme complète de services dédiés à l'énergie solaire et à l'efficacité énergétique
                         </p>
                     </div>
 
@@ -237,7 +290,7 @@ export default function ServicesPage() {
                     <div className="text-center mt-16 animate-in fade-in slide-in-from-bottom duration-700">
                         <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-8 max-w-4xl mx-auto text-white">
                             <h2 className="text-3xl font-bold mb-4">
-                                Prêt à passer à l&apos;énergie solaire ?
+                                Prêt à passer à l'énergie solaire ?
                             </h2>
                             <p className="text-xl mb-8 opacity-90">
                                 Contactez nos experts pour un devis personnalisé et gratuit
@@ -291,6 +344,14 @@ export default function ServicesPage() {
                         opacity: 1;
                         transform: translateY(0);
                     }
+                }
+
+                /* Styles pour améliorer l'affichage des images */
+                img {
+                    image-rendering: auto;
+                    image-rendering: crisp-edges;
+                    image-rendering: -webkit-crisp-edges;
+                    image-rendering: -moz-crisp-edges;
                 }
             `}</style>
         </div>

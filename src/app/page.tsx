@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, ReactNode } from 'react';
-import { CheckCircle, Facebook, Linkedin, Menu, Sun, Twitter, X } from 'lucide-react';
+import { CheckCircle, Menu, Sun, X } from 'lucide-react';
 import Image from 'next/image';
 import {COLOR_VARIANTS} from "@/utilis/colors";
 import {Footer} from "@/components/layout/footer";
@@ -296,7 +296,7 @@ const SolarLandingPage: React.FC = () => {
                   <div className="aspect-[4/3] bg-gradient-to-br from-sky-200 via-sky-300 to-sky-400 relative">
                     {/* Image de panneau solaire réelle */}
                     <Image
-                        src="/images/panneaux_photovoltaiques.jpg"
+                        src="/images/accueil_solar.jpeg"
                         alt="Panneaux solaires sur toit"
                         fill
                         className="object-cover"
@@ -409,7 +409,7 @@ const SolarLandingPage: React.FC = () => {
                       <div className="aspect-video bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
                         <div className="text-center text-white p-8">
                           <h4 className="text-2xl font-bold mb-4">Équipe Experte</h4>
-                          <p className="text-lg">Techniciens qualifiés et ingénieurs spécialisés</p>
+                          <p className="text-lg">Techniciens expérimentés et ingénieurs spécialisés</p>
                         </div>
                       </div>
                     </div>
@@ -423,7 +423,7 @@ const SolarLandingPage: React.FC = () => {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
-                        <span className="text-gray-800 font-medium">Techniciens Qualifiés</span>
+                        <span className="text-gray-800 font-medium">Techniciens expérimentés</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
@@ -573,7 +573,7 @@ const SolarLandingPage: React.FC = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
                     'Devis gratuit et sans engagement',
-                    'Installation par des techniciens certifiés',
+                    'Installation par des techniciens expérimentés',
                     'Garantie sur tous nos équipements',
                     'Service après-vente réactif',
                     'Accompagnement personnalisé'

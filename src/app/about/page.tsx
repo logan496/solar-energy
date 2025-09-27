@@ -239,7 +239,7 @@ const AboutPage: React.FC = () => {
                                 <div className="text-lg opacity-90">Installations</div>
                             </div>
                             <div>
-                                <div className="text-4xl font-black mb-2">53</div>
+                                <div className="text-4xl font-black mb-2">152</div>
                                 <div className="text-lg opacity-90">Employés formés</div>
                             </div>
                             <div>
