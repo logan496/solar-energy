@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, ReactNode } from 'react';
 import { CheckCircle, Menu, Sun, X } from 'lucide-react';
-import Image from 'next/image';
 import {COLOR_VARIANTS} from "@/utilis/colors";
 import {Footer} from "@/components/layout/footer";
 
@@ -184,7 +183,7 @@ const SolarLandingPage: React.FC = () => {
                   }}></div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <Image
+                  <img
                       src="/images/logo-solar.png"
                       alt="Logo Solar Energy Options"
                       width={72}
@@ -295,12 +294,10 @@ const SolarLandingPage: React.FC = () => {
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
                   <div className="aspect-[4/3] bg-gradient-to-br from-sky-200 via-sky-300 to-sky-400 relative">
                     {/* Image de panneau solaire réelle */}
-                    <Image
+                    <img
                         src="/images/accueil_solar.jpeg"
                         alt="Panneaux solaires sur toit"
-                        fill
                         className="object-cover"
-                        priority
                     />
 
                     {/* Fallback - Panneau solaire stylisé si pas d'image */}

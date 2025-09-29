@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Phone, Mail, MapPin, Menu, X } from "lucide-react";
-import {COLOR_VARIANTS, COLORS} from "@/utilis/colors";
+import { Menu, X } from "lucide-react";
+import {COLOR_VARIANTS} from "@/utilis/colors";
 import {NavigationItem} from "@/utilis/types";
 
 

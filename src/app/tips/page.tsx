@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import { Phone, Mail, Menu, X, Search, Sun, Wind, Home, Zap, Calendar, User, ArrowRight } from "lucide-react";
+import { Menu, X, Search, Sun, Wind, Home, Zap, Calendar, User, ArrowRight } from "lucide-react";
 import {Footer} from "@/components/layout/footer";
 
 // Couleurs définies
@@ -297,8 +297,7 @@ export default function BlogConseilsEnergie() {
             summary: "Découvrez des méthodes simples et efficaces pour diminuer votre consommation énergétique et réaliser des économies substantielles sur vos factures.",
             content: `
                 <h2>Introduction</h2>
-                <p>Réduire ses factures d'électricité est devenu une priorité pour de nombreux foyers. Voici 5 astuces pratiques et facilement applicables.</p>
-                
+                <p>Réduire ses factures d&apos;électricité est devenu une priorité pour de nombreux foyers. Voici 5 astuces pratiques et facilement applicables.</p>                
                 <h2>1. Optimiser l'éclairage</h2>
                 <p>Remplacez vos ampoules traditionnelles par des LED. Elles consomment jusqu'à 80% d'énergie en moins et durent 25 fois plus longtemps.</p>
                 
@@ -353,7 +352,7 @@ export default function BlogConseilsEnergie() {
             summary: "Maximisez l'autonomie de votre véhicule électrique avec ces conseils pratiques d'éco-conduite et d'entretien adaptés.",
             content: `
                 <h2>Les bases de l'éco-conduite électrique</h2>
-                <p>L'éco-conduite électrique diffère de la conduite traditionnelle. Voici les principes fondamentaux.</p>
+                <p>L&apos;éco-conduite électrique diffère de la conduite traditionnelle. Voici les principes fondamentaux.</p>
                 
                 <h2>Gestion de la température</h2>
                 <p>Le chauffage et la climatisation peuvent réduire l'autonomie de 20 à 40%. Utilisez le préchauffage pendant la charge.</p>
@@ -419,7 +418,7 @@ export default function BlogConseilsEnergie() {
             summary: "Optimisez votre autoconsommation photovoltaïque avec des stratégies intelligentes de gestion de l'énergie solaire produite.",
             content: `
                 <h2>Principe de l'autoconsommation</h2>
-                <p>L'autoconsommation consiste à consommer directement l'électricité produite par ses panneaux solaires.</p>
+                <p>L&apos;autoconsommation consiste à consommer directement l&apos;électricité produite par ses panneaux solaires.</p>
                 
                 <h2>Optimisation de la consommation</h2>
                 <p>Programmez vos appareils électroménagers pendant les heures d'ensoleillement pour maximiser l'autoconsommation.</p>

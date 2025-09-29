@@ -1,9 +1,8 @@
 import { Facebook, Linkedin } from "lucide-react";
 import React from "react";
-import {TikTok_Sans} from "next/dist/compiled/@next/font/dist/google";
 
 export const Footer = () => {
-    return ( // ← Il manquait le "return" ici
+    return (
         <footer className="bg-gray-50 border-t border-gray-200 py-8">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-3 gap-8 items-center">

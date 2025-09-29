@@ -3,12 +3,11 @@
 import { NavBar } from "@/components/layout/NavBar";
 import {NavigationItem} from "@/utilis/types";
 import React, { useState } from "react";
-import {Heart, Lightbulb, Settings, Sun, ChevronDown, ChevronUp} from "lucide-react";
+import {Heart, Lightbulb, Settings, ChevronDown, ChevronUp} from "lucide-react";
 import { COLORS } from "../COLORS";
 import {Footer} from "@/components/layout/footer";
+import AnimatedAboutImage from "@/components/AnimateAboutImage";
 
-// Pas d'interface nécessaire pour cette page
-// interface AboutPageProps peut être ajoutée plus tard si nécessaire
 
 const AboutPage: React.FC = () => {
     const [expandedCards, setExpandedCards] = useState<{[key: string]: boolean}>({
@@ -62,37 +61,13 @@ const AboutPage: React.FC = () => {
                             </p>
                         </div>
 
-                        {/* Right Content - Solar Panel Illustration */}
-                        <div className="relative animate-in fade-in slide-in-from-right duration-700">
-                            <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl p-8 relative overflow-hidden shadow-2xl">
-                                {/* Sun Icon */}
-                                <div className="absolute top-4 right-4">
-                                    <div className="bg-yellow-400 p-3 rounded-full animate-pulse">
-                                        <Sun className="w-8 h-8 text-yellow-800" />
-                                    </div>
-                                </div>
-
-                                {/* Solar Panel Grid */}
-                                <div className="grid grid-cols-4 gap-2 mt-8">
-                                    {Array.from({ length: 16 }).map((_, i) => (
-                                        <div
-                                            key={i}
-                                            className="aspect-square bg-blue-800/30 rounded border border-blue-300/20 animate-pulse"
-                                            style={{ animationDelay: `${i * 100}ms` }}
-                                        ></div>
-                                    ))}
-                                </div>
-
-                                {/* Energy waves animation */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-yellow-400/10 to-yellow-300/20 pointer-events-none animate-pulse"></div>
-                            </div>
-                        </div>
+                        <AnimatedAboutImage/>
                     </div>
 
                     {/* Values Section */}
                     <div className="grid md:grid-cols-3 gap-8 mb-16">
                         {/* Vision Card */}
-                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-in fade-in slide-in-from-bottom duration-700">
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-in fade-in slide-in-from-bottom">
                             <div className="text-center mb-6">
                                 <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-4">
                                     <Lightbulb className="w-8 h-8 text-yellow-600" />

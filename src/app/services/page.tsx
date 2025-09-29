@@ -167,7 +167,7 @@ export default function ServicesPage() {
     const services = [
         {
             id: "audit-energetique",
-            imageUrl: "/images/bornes1.jpeg",
+            imageUrl: "/images/audi_energetique.jpeg",
             imageAlt: "Audit énergétique - Analyse complète de consommation",
             title: "Audit énergétique",
             subtitle: "Analyse complète pour réduire vos coûts",
@@ -184,7 +184,7 @@ export default function ServicesPage() {
         },
         {
             id: "conception-installation-solaire",
-            imageUrl: "/images/bornes2.jpeg",
+            imageUrl: "/images/conception_insertion_solaire.jpeg",
             imageAlt: "Installation panneaux solaires photovoltaïques",
             title: "Conception et installation solaire",
             subtitle: "Panneaux solaires sur mesure pour tous les besoins",
@@ -203,7 +203,7 @@ export default function ServicesPage() {
         },
         {
             id: "eclairage-led-efficacite",
-            imageUrl: "/images/led-icon.png",
+            imageUrl: "/images/eclairage_led.jpeg",
             imageAlt: "Solutions d'éclairage LED efficaces",
             title: "Éclairage LED et solutions d'efficacité énergétique",
             subtitle: "Optimisez votre consommation et modernisez vos installations",
@@ -220,12 +220,12 @@ export default function ServicesPage() {
         },
         {
             id: "bornes-recharge-electrique",
-            imageUrl: "/images/charging-icon.png",
+            imageUrl: "/images/bornes2.jpeg",
             imageAlt: "Bornes de recharge pour véhicules électriques",
             title: "Installation de bornes de recharge électrique",
             subtitle: "Recharge sécurisée pour véhicules électriques",
             shortDescription: "Rechargez vos véhicules électriques facilement grâce à nos bornes sécurisées et performantes.",
-            fullDescription: "Nous assurons l'installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
+            fullDescription: "Nous assurons l&apos;installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
             benefits: [
                 "Mobilité durable",
                 "Solution clé en main fiable",
@@ -237,7 +237,7 @@ export default function ServicesPage() {
         },
         {
             id: "formation-conseil",
-            imageUrl: "/images/training-icon.png",
+            imageUrl: "/images/formation.jpeg",
             imageAlt: "Formation et conseil en énergie solaire",
             title: "Formation et conseil",
             subtitle: "Expertise et accompagnement personnalisé",
