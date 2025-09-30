@@ -29,11 +29,14 @@ interface SolarButtonProps {
   className?: string;
 }
 
+
 // Composant SolarButton amélioré
 const SolarButton: React.FC<SolarButtonProps> = ({
                                                    children,
                                                    text = "DEMANDEZ UN DEVIS DÈS AUJOURD'HUI",
-                                                   onClick = () => {},
+                                                   onClick = () => {
+                                                     window.location.href='contact';
+                                                   },
                                                    variant = 'primary',
                                                    size = 'md',
                                                    disabled = false,
@@ -186,8 +189,6 @@ const SolarLandingPage: React.FC = () => {
                   <img
                       src="/images/logo-solar.png"
                       alt="Logo Solar Energy Options"
-                      width={72}
-                      height={64}
                       className="h-16 w-18"
                   />
                 </div>
@@ -259,14 +260,14 @@ const SolarLandingPage: React.FC = () => {
                     <SolarButton
                         variant="primary"
                         size="md"
-                        onClick={() => console.log('Devis clicked')}
+                        onClick={() => window.location.href='contact'}
                     />
 
                     <SolarButton
                         variant="outline"
                         size="md"
                         text="En savoir plus"
-                        onClick={() => console.log('Learn more clicked')}
+                        onClick={() => window.location.href='services'}
                     />
                   </div>
                 </div>
@@ -292,82 +293,31 @@ const SolarLandingPage: React.FC = () => {
               {/* Right Content - Solar Panel Image */}
               <div className="relative">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-sky-200 via-sky-300 to-sky-400 relative">
-                    {/* Image de panneau solaire réelle */}
-                    <img
-                        src="/images/accueil_solar.jpeg"
-                        alt="Panneaux solaires sur toit"
-                        className="object-cover"
-                    />
+                  {/* Image de panneau solaire réelle */}
+                  <img
+                      src="/images/accueil_solar.jpeg"
+                      alt="Panneaux solaires sur toit"
+                      className="object-cover"
+                  />
+                  {/* Overlay dégradé pour l'effet lumière solaire */}
+                  <div className=" absolute inset-0 bg-gradient-to-t from-transparent via-yellow-400/5 to-yellow-300/10 pointer-events-none"></div>
 
-                    {/* Fallback - Panneau solaire stylisé si pas d'image */}
-                    <div className="w-full h-full hidden items-center justify-center p-6 bg-gradient-to-br from-sky-200 to-blue-400">
-                      {/* Panneau solaire avec perspective réaliste */}
-                      <div
-                          className="w-4/5 h-4/5 bg-slate-800 rounded-lg shadow-2xl relative overflow-hidden"
-                          style={{
-                            transform: 'perspective(400px) rotateX(15deg) rotateY(-10deg)',
-                            background: 'linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%)',
-                          }}
-                      >
-                        {/* Grille de cellules photovoltaïques 6x4 */}
-                        <div className="absolute inset-1 grid grid-cols-6 grid-rows-4 gap-0.5">
-                          {[...Array(24)].map((_, i) => (
-                              <div
-                                  key={i}
-                                  className="bg-slate-700 relative border border-slate-600"
-                                  style={{
-                                    background: `
-                                  radial-gradient(circle at 25% 25%, #475569 0%, #334155 40%, #1e293b 100%),
-                                  linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%)
-                                `,
-                                    boxShadow: 'inset 1px 1px 3px rgba(0,0,0,0.3)'
-                                  }}
-                              >
-                                {/* Lignes conductrices sur les cellules */}
-                                <div className="absolute top-1/2 left-0 right-0 h-px bg-gray-500 opacity-30"></div>
-                                <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-500 opacity-30"></div>
-                              </div>
-                          ))}
-                        </div>
-
-                        {/* Cadre en aluminium */}
+                  {/* Rayons de soleil animés */}
+                  <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
+                    {[...Array(6)].map((_, i) => (
                         <div
-                            className="absolute inset-0 border-4 rounded-lg"
+                            key={i}
+                            className="absolute top-6 right-6 w-0.5 h-12 bg-gradient-to-b from-yellow-300/50 to-transparent origin-bottom"
                             style={{
-                              borderColor: '#9ca3af',
-                              background: 'linear-gradient(45deg, #d1d5db 0%, #9ca3af 50%, #6b7280 100%)',
-                              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                              WebkitMaskComposite: 'xor',
-                              maskComposite: 'exclude'
+                              transform: `rotate(${i * 30}deg)`,
+                              animation: `pulse ${2.5 + i * 0.2}s ease-in-out infinite alternate`
                             }}
                         ></div>
-
-                        {/* Reflet principal */}
-                        <div
-                            className="absolute top-2 left-2 w-1/3 h-1/2 bg-gradient-to-br from-white/20 via-white/10 to-transparent rounded-tl-lg pointer-events-none"
-                            style={{ filter: 'blur(1px)' }}
-                        ></div>
-                      </div>
-                    </div>
-
-                    {/* Overlay dégradé pour l'effet lumière solaire */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-transparent via-yellow-400/5 to-yellow-300/10 pointer-events-none"></div>
-
-                    {/* Rayons de soleil animés */}
-                    <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
-                      {[...Array(6)].map((_, i) => (
-                          <div
-                              key={i}
-                              className="absolute top-6 right-6 w-0.5 h-12 bg-gradient-to-b from-yellow-300/50 to-transparent origin-bottom"
-                              style={{
-                                transform: `rotate(${i * 30}deg)`,
-                                animation: `pulse ${2.5 + i * 0.2}s ease-in-out infinite alternate`
-                              }}
-                          ></div>
-                      ))}
-                    </div>
+                    ))}
                   </div>
+                  {/*<div className="aspect-[4/3] bg-gradient-to-br from-sky-200 via-sky-300 to-sky-400 relative">*/}
+                  {/*  */}
+                  {/*</div>*/}
                 </div>
 
                 {/* Éléments décoratifs flottants */}
@@ -597,7 +547,7 @@ const SolarLandingPage: React.FC = () => {
                         variant="primary"
                         size="lg"
                         text="Contactez nos experts maintenant !"
-                        onClick={() => console.log('contact experts clicked')}
+                        onClick={() => window.location.href='contact'}
                         className="animate-pulse hover:animate-none hover:scale-105 shadow-lg shadow-yellow-400/50"
                     />
                   </div>

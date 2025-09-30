@@ -4,6 +4,7 @@ import { NavigationItem } from "@/utilis/types";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { NavBar } from "@/components/layout/NavBar";
 import React, { useState } from "react";
+import Image from "next/image";
 
 interface ServiceCardProps {
     id: string;
@@ -45,26 +46,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                     className="w-40 h-32 lg:w-48 lg:h-36 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300 relative overflow-hidden shadow-md"
                     style={{ backgroundColor: `${bgColor}15` }}
                 >
-                    <img
+                    <Image
                         src={imageUrl}
                         alt={imageAlt}
+                        width={192}
+                        height={144}
                         className="w-full h-full object-cover rounded-xl transition-all duration-300 group-hover:scale-110"
                         style={{
                             filter: 'none',
                             objectFit: 'cover'
-                        }}
-                        onError={(e) => {
-                            // Image de fallback en cas d'erreur de chargement
-                            const target = e.target as HTMLImageElement;
-                            target.src = `data:image/svg+xml,${encodeURIComponent(`
-                                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="144" viewBox="0 0 24 24" fill="none" stroke="${bgColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <circle cx="8.5" cy="8.5" r="1.5"/>
-                                    <polyline points="21,15 16,10 5,21"/>
-                                </svg>
-                            `)}`;
-                            target.style.padding = '32px';
-                            target.style.backgroundColor = `${bgColor}20`;
                         }}
                     />
                     {/* Effet de superposition colorée au hover */}
@@ -268,7 +258,7 @@ export default function ServicesPage() {
                         </h1>
                         <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-8"></div>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            Découvrez notre gamme complète de services dédiés à l'énergie solaire et à l'efficacité énergétique
+                            Découvrez notre gamme complète de services dédiés à l&apos;énergie solaire et à l&apos;efficacité énergétique
                         </p>
                     </div>
 
@@ -290,7 +280,7 @@ export default function ServicesPage() {
                     <div className="text-center mt-16 animate-in fade-in slide-in-from-bottom duration-700">
                         <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-8 max-w-4xl mx-auto text-white">
                             <h2 className="text-3xl font-bold mb-4">
-                                Prêt à passer à l'énergie solaire ?
+                                Prêt à passer à l&apos;énergie solaire ?
                             </h2>
                             <p className="text-xl mb-8 opacity-90">
                                 Contactez nos experts pour un devis personnalisé et gratuit
@@ -344,14 +334,6 @@ export default function ServicesPage() {
                         opacity: 1;
                         transform: translateY(0);
                     }
-                }
-
-                /* Styles pour améliorer l'affichage des images */
-                img {
-                    image-rendering: auto;
-                    image-rendering: crisp-edges;
-                    image-rendering: -webkit-crisp-edges;
-                    image-rendering: -moz-crisp-edges;
                 }
             `}</style>
         </div>

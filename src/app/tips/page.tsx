@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X, Search, Sun, Wind, Home, Zap, Calendar, User, ArrowRight } from "lucide-react";
 import {Footer} from "@/components/layout/footer";
+import Image from "next/image";
 
 // Couleurs définies
 const COLORS = {
@@ -79,10 +80,13 @@ const NavBar: React.FC<NavBarProps> = ({ navigationItems }) => {
                                 }}></div>
                             </div>
                             <div className="flex flex-col items-center">
-                                <div className="h-16 w-18  flex items-center justify-center text-white font-bold text-sm">
-                                    <img
+                                <div className="h-16 w-18 flex items-center justify-center text-white font-bold text-sm">
+                                    <Image
                                         src="/images/logo-solar.png"
                                         alt="logo de solar"
+                                        width={72}
+                                        height={64}
+                                        priority
                                     />
                                 </div>
                             </div>
@@ -258,7 +262,7 @@ const ArticleModal: React.FC<ArticleModalProps> = ({ article, isOpen, onClose })
                     </div>
 
                     <div className="mt-8 p-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl text-white text-center">
-                        <h3 className="text-xl font-bold mb-2">Besoin d'un conseil personnalisé ?</h3>
+                        <h3 className="text-xl font-bold mb-2">Besoin d&apos;un conseil personnalisé ?</h3>
                         <p className="mb-4 opacity-90">Nos experts sont là pour vous accompagner dans votre projet énergétique</p>
                         <button className="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
                             Demander un conseil
@@ -269,8 +273,6 @@ const ArticleModal: React.FC<ArticleModalProps> = ({ article, isOpen, onClose })
         </div>
     );
 };
-
-
 
 // Composant principal
 export default function BlogConseilsEnergie() {
@@ -297,7 +299,7 @@ export default function BlogConseilsEnergie() {
             summary: "Découvrez des méthodes simples et efficaces pour diminuer votre consommation énergétique et réaliser des économies substantielles sur vos factures.",
             content: `
                 <h2>Introduction</h2>
-                <p>Réduire ses factures d&apos;électricité est devenu une priorité pour de nombreux foyers. Voici 5 astuces pratiques et facilement applicables.</p>                
+                <p>Réduire ses factures d'électricité est devenu une priorité pour de nombreux foyers. Voici 5 astuces pratiques et facilement applicables.</p>                
                 <h2>1. Optimiser l'éclairage</h2>
                 <p>Remplacez vos ampoules traditionnelles par des LED. Elles consomment jusqu'à 80% d'énergie en moins et durent 25 fois plus longtemps.</p>
                 
@@ -352,7 +354,7 @@ export default function BlogConseilsEnergie() {
             summary: "Maximisez l'autonomie de votre véhicule électrique avec ces conseils pratiques d'éco-conduite et d'entretien adaptés.",
             content: `
                 <h2>Les bases de l'éco-conduite électrique</h2>
-                <p>L&apos;éco-conduite électrique diffère de la conduite traditionnelle. Voici les principes fondamentaux.</p>
+                <p>L'éco-conduite électrique diffère de la conduite traditionnelle. Voici les principes fondamentaux.</p>
                 
                 <h2>Gestion de la température</h2>
                 <p>Le chauffage et la climatisation peuvent réduire l'autonomie de 20 à 40%. Utilisez le préchauffage pendant la charge.</p>
@@ -418,7 +420,7 @@ export default function BlogConseilsEnergie() {
             summary: "Optimisez votre autoconsommation photovoltaïque avec des stratégies intelligentes de gestion de l'énergie solaire produite.",
             content: `
                 <h2>Principe de l'autoconsommation</h2>
-                <p>L&apos;autoconsommation consiste à consommer directement l&apos;électricité produite par ses panneaux solaires.</p>
+                <p>L'autoconsommation consiste à consommer directement l'électricité produite par ses panneaux solaires.</p>
                 
                 <h2>Optimisation de la consommation</h2>
                 <p>Programmez vos appareils électroménagers pendant les heures d'ensoleillement pour maximiser l'autoconsommation.</p>
@@ -469,7 +471,7 @@ export default function BlogConseilsEnergie() {
                 <div className="container mx-auto px-4 relative z-10">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-4">Blog & Conseils Énergie</h1>
                     <p className="text-xl opacity-90 max-w-2xl">
-                        Découvrez nos articles et conseils d'experts pour optimiser votre consommation énergétique et adopter les solutions durables.
+                        Découvrez nos articles et conseils d&apos;experts pour optimiser votre consommation énergétique et adopter les solutions durables.
                     </p>
                 </div>
                 <div className="absolute right-0 top-0 opacity-10">
@@ -511,7 +513,7 @@ export default function BlogConseilsEnergie() {
                                 onClick={handleNewsletterSubmit}
                                 className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
                             >
-                                S'inscrire
+                                S&apos;inscrire
                             </button>
                         </div>
                     </div>
@@ -574,13 +576,13 @@ export default function BlogConseilsEnergie() {
 
             <style jsx>{`
                 @keyframes fadeIn {
-                    from { 
-                        opacity: 0; 
-                        transform: translateY(20px); 
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
                     }
-                    to { 
-                        opacity: 1; 
-                        transform: translateY(0); 
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
                     }
                 }
 
@@ -620,4 +622,3 @@ export default function BlogConseilsEnergie() {
         </div>
     );
 }
-
