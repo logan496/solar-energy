@@ -150,7 +150,7 @@ export default function ProjectsRealizationsPage() {
                             </div>
                             <div className="space-y-2">
                                 <div className="text-4xl font-black">53</div>
-                                <div className="text-lg opacity-90">Employés formés</div>
+                                <div className="text-lg opacity-90">Personnes formés</div>
                             </div>
                             <div className="space-y-2">
                                 <div className="text-4xl font-black">93.8%</div>

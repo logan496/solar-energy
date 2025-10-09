@@ -5,6 +5,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { NavBar } from "@/components/layout/NavBar";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ServiceCardProps {
     id: string;
@@ -16,11 +17,12 @@ interface ServiceCardProps {
     fullDescription: string;
     benefits: string[];
     ctaText: string;
+    ctaRoute: string; // ✅ Nouvelle propriété pour la route
     color: string;
     bgColor: string;
     isExpanded: boolean;
     onToggle: () => void;
-    onCTAClick: () => void;
+    onCTAClick: (route: string) => void;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -33,6 +35,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                                                      fullDescription,
                                                      benefits,
                                                      ctaText,
+                                                     ctaRoute,
                                                      color,
                                                      bgColor,
                                                      isExpanded,
@@ -57,12 +60,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                             objectFit: 'cover'
                         }}
                     />
-                    {/* Effet de superposition colorée au hover */}
                     <div
                         className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-all duration-300"
                         style={{ backgroundColor: bgColor }}
                     ></div>
-                    {/* Effet de bordure colorée */}
                     <div
                         className="absolute inset-0 rounded-xl border-2 opacity-0 group-hover:opacity-50 transition-opacity duration-300"
                         style={{ borderColor: bgColor }}
@@ -100,7 +101,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                             )}
 
                             <button
-                                onClick={onCTAClick}
+                                onClick={() => onCTAClick(ctaRoute)}
                                 className="inline-flex items-center px-6 py-3 font-bold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-white"
                                 style={{ backgroundColor: color }}
                             >
@@ -132,6 +133,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
 // Composant principal
 export default function ServicesPage() {
+    const router = useRouter();
     const [expandedServices, setExpandedServices] = useState<{[key: string]: boolean}>({});
 
     const toggleService = (serviceId: string) => {
@@ -141,8 +143,8 @@ export default function ServicesPage() {
         }));
     };
 
-    const redirectToContact = () => {
-        window.location.href = '/contact';
+    const handleCTAClick = (route: string) => {
+        router.push(route);
     };
 
     const navigationItems: NavigationItem[] = [
@@ -169,6 +171,7 @@ export default function ServicesPage() {
                 "Retour sur investissement optimisé"
             ],
             ctaText: "Planifiez votre audit dès aujourd'hui !",
+            ctaRoute: "/about",
             color: "#FFC107",
             bgColor: "#FFC107"
         },
@@ -188,6 +191,7 @@ export default function ServicesPage() {
                 "Retour sur investissement attractif"
             ],
             ctaText: "Demandez votre devis personnalisé !",
+            ctaRoute: "/projets",
             color: "#2196F3",
             bgColor: "#2196F3"
         },
@@ -205,6 +209,7 @@ export default function ServicesPage() {
                 "Contribution à un environnement durable"
             ],
             ctaText: "Découvrez nos solutions dès maintenant !",
+            ctaRoute: "/projets",
             color: "#FF9800",
             bgColor: "#FF9800"
         },
@@ -215,13 +220,14 @@ export default function ServicesPage() {
             title: "Installation de bornes de recharge électrique",
             subtitle: "Recharge sécurisée pour véhicules électriques",
             shortDescription: "Rechargez vos véhicules électriques facilement grâce à nos bornes sécurisées et performantes.",
-            fullDescription: "Nous assurons l&apos;installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
+            fullDescription: "Nous assurons l'installation complète, conforme aux normes IRVE, adaptée à vos besoins particuliers ou professionnels.",
             benefits: [
                 "Mobilité durable",
                 "Solution clé en main fiable",
                 "Recharge sécurisée pour vos véhicules électriques"
             ],
             ctaText: "Demandez votre installation aujourd'hui !",
+            ctaRoute: "/projets",
             color: "#4CAF50",
             bgColor: "#4CAF50"
         },
@@ -239,8 +245,28 @@ export default function ServicesPage() {
                 "Impact tangible sur vos coûts et l'environnement"
             ],
             ctaText: "Planifiez votre formation maintenant !",
+            ctaRoute: "/tips",
             color: "#9C27B0",
             bgColor: "#9C27B0"
+        },
+        {
+            id: "power-station-portable",
+            imageUrl: "/images/station-portable.jpeg",
+            imageAlt: "Ventes de Power Station Portables",
+            title: "Ventes de Power Station Portables",
+            subtitle: "Énergie portable, propre et autonome",
+            shortDescription: "Des stations d'énergie portables pour une alimentation autonome où que vous soyez, alimentées par l'énergie solaire.",
+            fullDescription: "Nous mettons à votre disposition des stations d'énergie portables, une solution pratique, fiable et écologique pour répondre à vos besoins en électricité, où que vous soyez. Compactes et faciles à transporter, elles offrent une alimentation autonome pour vos appareils essentiels (téléphones, ordinateurs, équipements domestiques ou professionnels) grâce à l'énergie solaire. Que ce soit pour vos déplacements, vos activités en extérieur, vos voyages ou en cas de coupures électriques, nos Power Station Portables vous garantissent une source d'énergie propre et durable, adaptée à vos besoins quotidiens.",
+            benefits: [
+                "Solution portable et compacte",
+                "Alimentation solaire écologique",
+                "Autonomie pour tous vos appareils",
+                "Idéal pour déplacements et urgences"
+            ],
+            ctaText: "Découvrez nos Power Stations !",
+            ctaRoute: "/contact",
+            color: "#FF9800",
+            bgColor: "#FF9800"
         }
     ];
 
@@ -248,10 +274,8 @@ export default function ServicesPage() {
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
             <NavBar navigationItems={navigationItems} logo="SOLAR ENERGY OPTIONS" />
 
-            {/* Section principale */}
             <div className="pt-24 pb-16">
                 <div className="container mx-auto px-4">
-                    {/* En-tête de la section */}
                     <div className="text-center mb-16 animate-in fade-in slide-in-from-top duration-700">
                         <h1 className="text-5xl font-bold text-gray-800 mb-6">
                             Nos Services
@@ -262,7 +286,6 @@ export default function ServicesPage() {
                         </p>
                     </div>
 
-                    {/* Grille des services */}
                     <div className="space-y-8 max-w-6xl mx-auto">
                         {services.map((service, index) => (
                             <div key={service.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
@@ -270,13 +293,12 @@ export default function ServicesPage() {
                                     {...service}
                                     isExpanded={expandedServices[service.id] || false}
                                     onToggle={() => toggleService(service.id)}
-                                    onCTAClick={redirectToContact}
+                                    onCTAClick={handleCTAClick}
                                 />
                             </div>
                         ))}
                     </div>
 
-                    {/* Section CTA */}
                     <div className="text-center mt-16 animate-in fade-in slide-in-from-bottom duration-700">
                         <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-8 max-w-4xl mx-auto text-white">
                             <h2 className="text-3xl font-bold mb-4">
@@ -286,7 +308,7 @@ export default function ServicesPage() {
                                 Contactez nos experts pour un devis personnalisé et gratuit
                             </p>
                             <button
-                                onClick={redirectToContact}
+                                onClick={() => router.push('/contact')}
                                 className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg"
                             >
                                 Obtenir un devis
