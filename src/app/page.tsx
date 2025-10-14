@@ -1,160 +1,58 @@
 "use client";
 
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, Menu, Sun, X } from 'lucide-react';
-import {COLOR_VARIANTS} from "@/utilis/colors";
+import { SolarButton, COLORS } from '@/components/ui/SolarButton';
 import {Footer} from "@/components/layout/footer";
 
-// Types pour NavigationItem
-interface NavigationItem {
-  label: string;
-  href: string;
-}
-
-// Define COLORS depuis les spécifications
-const COLORS = {
-  jauneSolaire: '#FFC107',
-  vertEnergie: '#4CAF50',
-  blancPur: '#FFFFFF'
+const COLOR_VARIANTS = {
+  vertEnergie: {
+    "800": "#2E7D32"
+  }
 };
 
-// Define proper TypeScript interfaces
-interface SolarButtonProps {
-  children?: ReactNode;
-  text?: string;
-  onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
-  disabled?: boolean;
-  className?: string;
-}
+const SolarLandingPage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
-// Composant SolarButton amélioré
-const SolarButton: React.FC<SolarButtonProps> = ({
-                                                   children,
-                                                   text = "DEMANDEZ UN DEVIS DÈS AUJOURD'HUI",
-                                                   onClick = () => {
-                                                     window.location.href='contact';
-                                                   },
-                                                   variant = 'primary',
-                                                   size = 'md',
-                                                   disabled = false,
-                                                   className = '',
-                                                 }) => {
-  const baseClasses = "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
-
-  const variantClasses: Record<string, string> = {
-    primary: "text-gray-900",
-    secondary: "text-white",
-    outline: "bg-transparent border-2"
-  };
-
-  const sizeClasses: Record<string, string> = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-8 py-4 text-lg",
-    lg: "px-10 py-5 text-xl"
-  };
-
-  const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
-
-  return (
-      <button
-          className={buttonClasses}
-          onClick={onClick}
-          disabled={disabled}
-          style={{
-            backgroundColor: variant === 'primary' ? COLORS.jauneSolaire :
-                variant === 'secondary' ? COLORS.vertEnergie : 'transparent',
-            borderColor: variant === 'outline' ? COLORS.vertEnergie : 'transparent',
-            color: variant === 'primary' ? '#1F2937' :
-                variant === 'secondary' ? COLORS.blancPur : COLORS.vertEnergie,
-          }}
-          onMouseEnter={(e) => {
-            if (!disabled) {
-              if (variant === 'primary') {
-                e.currentTarget.style.backgroundColor = '#FFB300';
-              } else if (variant === 'secondary') {
-                e.currentTarget.style.backgroundColor = '#43A047';
-              } else if (variant === 'outline') {
-                e.currentTarget.style.backgroundColor = COLORS.vertEnergie;
-                e.currentTarget.style.color = COLORS.blancPur;
-              }
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!disabled) {
-              if (variant === 'primary') {
-                e.currentTarget.style.backgroundColor = COLORS.jauneSolaire;
-              } else if (variant === 'secondary') {
-                e.currentTarget.style.backgroundColor = COLORS.vertEnergie;
-              } else if (variant === 'outline') {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = COLORS.vertEnergie;
-              }
-            }
-          }}
-      >
-        {children || text}
-      </button>
-  );
-};
-
-const SolarLandingPage: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-  // Ajouter les styles d'animation CSS
   useEffect(() => {
     const style = document.createElement('style');
     style.textContent = `
       @keyframes spin-slow {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
       .animate-spin-slow {
         animation: spin-slow 8s linear infinite;
       }
     `;
     document.head.appendChild(style);
-
     return () => {
       document.head.removeChild(style);
     };
   }, []);
 
-  // Hook pour les animations au scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              // Élément visible - déclencher l'animation
               entry.target.classList.add('opacity-100', 'translate-y-0', 'translate-x-0');
               entry.target.classList.remove('opacity-0', 'translate-y-12', '-translate-x-12', 'translate-x-12');
             } else {
-              // Élément non visible - remettre à l'état initial pour permettre la réanimation
               entry.target.classList.remove('opacity-100', 'translate-y-0', 'translate-x-0');
               entry.target.classList.add('opacity-0', 'translate-y-12', '-translate-x-12', 'translate-x-12');
             }
           });
         },
-        {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        }
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
     const elements = document.querySelectorAll('.animate-on-scroll');
     elements.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 
-  const navigationItems: NavigationItem[] = [
+  const navigationItems = [
     { label: 'Accueil', href: '/' },
     { label: 'À propos', href: '/about' },
     { label: 'Nos Services', href: '/services' },
@@ -163,7 +61,7 @@ const SolarLandingPage: React.FC = () => {
     { label: 'Contact', href: '/contact' }
   ];
 
-  const benefits: string[] = [
+  const benefits = [
     "Réduisez significativement vos factures d'électricité",
     'Gagnez en autonomie énergétique (partielle ou totale)',
     'Valorisez votre patrimoine immobilier',
@@ -177,7 +75,6 @@ const SolarLandingPage: React.FC = () => {
         <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
           <div className="container mx-auto px-4 py-4">
             <div className="flex justify-between items-center">
-              {/* Logo */}
               <div className="flex items-center space-x-2">
                 <div className="relative">
                   <Sun className="w-12 h-12 text-yellow-500 animate-spin-slow" />
@@ -194,7 +91,6 @@ const SolarLandingPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Desktop Navigation */}
               <nav className="hidden lg:flex space-x-8">
                 {navigationItems.map((item, index) => (
                     <a
@@ -208,7 +104,6 @@ const SolarLandingPage: React.FC = () => {
                 ))}
               </nav>
 
-              {/* Mobile menu button */}
               <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
@@ -217,7 +112,6 @@ const SolarLandingPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Mobile Navigation */}
             {isMenuOpen && (
                 <div className="lg:hidden mt-4 pb-4 border-t border-gray-100">
                   <nav className="flex flex-col space-y-3 mt-4">
@@ -241,8 +135,6 @@ const SolarLandingPage: React.FC = () => {
           {/* Hero Section */}
           <div className="container mx-auto px-4 py-12">
             <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-
-              {/* Left Content */}
               <div className="space-y-8">
                 <div>
                   <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: COLOR_VARIANTS.vertEnergie["800"] }}>
@@ -260,78 +152,48 @@ const SolarLandingPage: React.FC = () => {
                     <SolarButton
                         variant="primary"
                         size="md"
-                        onClick={() => window.location.href='contact'}
-                    />
-
+                        onClick={() => window.location.href='/contact'}
+                    >
+                      DEMANDEZ UN DEVIS DÈS AUJOURD'HUI
+                    </SolarButton>
                     <SolarButton
                         variant="outline"
                         size="md"
-                        text="En savoir plus"
-                        onClick={() => window.location.href='services'}
-                    />
+                        onClick={() => window.location.href='/services'}
+                    >
+                      En savoir plus
+                    </SolarButton>
                   </div>
                 </div>
 
-                {/* Benefits List */}
                 <div className="space-y-4">
                   {benefits.map((benefit, index) => (
-                      <div
-                          key={index}
-                          className="flex items-center space-x-3"
-                      >
+                      <div key={index} className="flex items-center space-x-3">
                         <div className="flex-shrink-0">
                           <CheckCircle className="w-6 h-6" style={{ color: COLORS.vertEnergie }} />
                         </div>
-                        <span className="text-gray-800 font-medium text-lg">
-                      {benefit}
-                    </span>
+                        <span className="text-gray-800 font-medium text-lg">{benefit}</span>
                       </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right Content - Solar Panel Image */}
-              <div className="relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                  {/* Image de panneau solaire réelle */}
+              {/* Right Content - Solar Panel Image with Clip Path */}
+              <div className="relative h-full flex items-center">
+                <div
+                    className="relative w-full overflow-hidden transition-all duration-500"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 83% 100%, 10% 82%)',
+                      minHeight: '500px'
+                    }}
+                >
                   <img
                       src="/images/accueil_solar.jpeg"
                       alt="Panneaux solaires sur toit"
-                      className="object-cover"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center' }}
                   />
-                  {/* Overlay dégradé pour l'effet lumière solaire */}
-                  <div className=" absolute inset-0 bg-gradient-to-t from-transparent via-yellow-400/5 to-yellow-300/10 pointer-events-none"></div>
-
-                  {/* Rayons de soleil animés */}
-                  <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
-                    {[...Array(6)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="absolute top-6 right-6 w-0.5 h-12 bg-gradient-to-b from-yellow-300/50 to-transparent origin-bottom"
-                            style={{
-                              transform: `rotate(${i * 30}deg)`,
-                              animation: `pulse ${2.5 + i * 0.2}s ease-in-out infinite alternate`
-                            }}
-                        ></div>
-                    ))}
-                  </div>
-                  {/*<div className="aspect-[4/3] bg-gradient-to-br from-sky-200 via-sky-300 to-sky-400 relative">*/}
-                  {/*  */}
-                  {/*</div>*/}
                 </div>
-
-                {/* Éléments décoratifs flottants */}
-                <div
-                    className="absolute -top-4 -right-4 w-8 h-8 rounded-full shadow-lg animate-bounce"
-                    style={{ backgroundColor: COLORS.jauneSolaire }}
-                ></div>
-                <div
-                    className="absolute -bottom-4 -left-4 w-6 h-6 rounded-full shadow-lg"
-                    style={{
-                      backgroundColor: COLORS.vertEnergie,
-                      animation: 'pulse 2s infinite'
-                    }}
-                ></div>
               </div>
             </div>
           </div>
@@ -353,10 +215,18 @@ const SolarLandingPage: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div className="animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
-                      <div className="aspect-video bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-                        <div className="text-center text-white p-8">
-                          <h4 className="text-2xl font-bold mb-4">Équipe Experte</h4>
-                          <p className="text-lg">Techniciens expérimentés et ingénieurs spécialisés</p>
+                      <div className="aspect-video relative">
+                        <img
+                            src="/images/expertise_reconnue.png"
+                            alt="Équipe d'experts"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
+                          <div>
+                            <h4 className="text-2xl font-bold mb-4">Équipe Experte</h4>
+                            <p className="text-lg">Techniciens expérimentés et ingénieurs spécialisés</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -364,8 +234,8 @@ const SolarLandingPage: React.FC = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Expertise Reconnue</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Notre équipe est composée de techniciens expérimentés et d&apos;ingénieurs spécialisés dans les énergies renouvelables.
-                      Qualifiés pour l&apos;installation de bornes de recharge électrique, nous garantissons des services professionnels et fiables.
+                      Notre équipe est composée de techniciens expérimentés et d'ingénieurs spécialisés dans les énergies renouvelables.
+                      Qualifiés pour l'installation de bornes de recharge électrique, nous garantissons des services professionnels et fiables.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -388,7 +258,7 @@ const SolarLandingPage: React.FC = () => {
                     <h3 className="text-3xl font-bold text-green-700">Qualité et Fiabilité</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Nous utilisons uniquement des équipements de marques reconnues et offrons des garanties étendues sur tous nos produits et services.
-                      Vous bénéficiez ainsi d&apos;installations durables et performantes pour une tranquillité d&apos;esprit maximale.
+                      Vous bénéficiez ainsi d'installations durables et performantes pour une tranquillité d'esprit maximale.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -403,10 +273,18 @@ const SolarLandingPage: React.FC = () => {
                   </div>
                   <div className="order-1 lg:order-2 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
-                      <div className="aspect-video bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
-                        <div className="text-center text-white p-8">
-                          <h4 className="text-2xl font-bold mb-4">Équipements Premium</h4>
-                          <p className="text-lg">Matériel de qualité supérieure avec garanties étendues</p>
+                      <div className="aspect-video relative">
+                        <img
+                            src="/images/qualite_fiabilite.png"
+                            alt="Panneaux solaires premium"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
+                          <div>
+                            <h4 className="text-2xl font-bold mb-4">Équipements Premium</h4>
+                            <p className="text-lg">Matériel de qualité supérieure avec garanties étendues</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -419,10 +297,18 @@ const SolarLandingPage: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div className="animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
-                      <div className="aspect-video bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                        <div className="text-center text-white p-8">
-                          <h4 className="text-2xl font-bold mb-4">Solutions Sur Mesure</h4>
-                          <p className="text-lg">Analyse personnalisée et adaptation à vos besoins</p>
+                      <div className="aspect-video relative">
+                        <img
+                            src="/images/approche.png"
+                            alt="Consultation personnalisée"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
+                          <div>
+                            <h4 className="text-2xl font-bold mb-4">Solutions Sur Mesure</h4>
+                            <p className="text-lg">Analyse personnalisée et adaptation à vos besoins</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -431,7 +317,7 @@ const SolarLandingPage: React.FC = () => {
                     <h3 className="text-3xl font-bold text-green-700">Approche Personnalisée</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Chaque projet est unique. Nous analysons vos besoins pour vous proposer la solution la mieux adaptée à votre situation et votre budget,
-                      qu&apos;il s&apos;agisse d&apos;une installation résidentielle, commerciale ou institutionnelle.
+                      qu'il s'agisse d'une installation résidentielle, commerciale ou institutionnelle.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -455,7 +341,7 @@ const SolarLandingPage: React.FC = () => {
                     <p className="text-gray-700 text-lg leading-relaxed">
                       En choisissant Solar Energy Options, vous participez activement à la transition énergétique
                       et à la lutte contre le changement climatique. Nos solutions réduisent les émissions de CO2
-                      et préservent l&apos;environnement pour les générations futures.
+                      et préservent l'environnement pour les générations futures.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -464,16 +350,24 @@ const SolarLandingPage: React.FC = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
-                        <span className="text-gray-800 font-medium">Préservation de l&apos;environnement</span>
+                        <span className="text-gray-800 font-medium">Préservation de l'environnement</span>
                       </div>
                     </div>
                   </div>
                   <div className="order-1 lg:order-2 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
-                      <div className="aspect-video bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
-                        <div className="text-center text-white p-8">
-                          <h4 className="text-2xl font-bold mb-4">Éco-Responsable</h4>
-                          <p className="text-lg">Pour un avenir durable et respectueux de l&apos;environnement</p>
+                      <div className="aspect-video relative">
+                        <img
+                            src="/images/environnement.png"
+                            alt="Environnement durable"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
+                          <div>
+                            <h4 className="text-2xl font-bold mb-4">Éco-Responsable</h4>
+                            <p className="text-lg">Pour un avenir durable et respectueux de l'environnement</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -486,10 +380,18 @@ const SolarLandingPage: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div className="animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
-                      <div className="aspect-video bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
-                        <div className="text-center text-white p-8">
-                          <h4 className="text-2xl font-bold mb-4">Service Excellence</h4>
-                          <p className="text-lg">Accompagnement personnalisé et support continu</p>
+                      <div className="aspect-video relative">
+                        <img
+                            src="/images/service_client.png"
+                            alt="Service client"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
+                          <div>
+                            <h4 className="text-2xl font-bold mb-4">Service Excellence</h4>
+                            <p className="text-lg">Accompagnement personnalisé et support continu</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -537,19 +439,20 @@ const SolarLandingPage: React.FC = () => {
               <div className="text-center animate-on-scroll opacity-0 translate-y-12 transition-all duration-700 ease-out">
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-green-700">
-                    Rejoignez dès aujourd&apos;hui la révolution énergétique !
+                    Rejoignez dès aujourd'hui la révolution énergétique !
                   </h3>
                   <p className="text-xl text-gray-600 mb-8">
-                    Contribuez à un avenir plus durable pour l&apos;Afrique avec Solar Energy Options
+                    Contribuez à un avenir plus durable pour l'Afrique avec Solar Energy Options
                   </p>
                   <div className="inline-block">
                     <SolarButton
                         variant="primary"
                         size="lg"
-                        text="Contactez nos experts maintenant !"
-                        onClick={() => window.location.href='contact'}
+                        onClick={() => window.location.href='/contact'}
                         className="animate-pulse hover:animate-none hover:scale-105 shadow-lg shadow-yellow-400/50"
-                    />
+                    >
+                      Contactez nos experts maintenant !
+                    </SolarButton>
                   </div>
                 </div>
               </div>
@@ -558,7 +461,7 @@ const SolarLandingPage: React.FC = () => {
         </main>
 
         {/* Footer */}
-        <Footer />
+        <Footer/>
       </div>
   );
 };

@@ -143,9 +143,9 @@ const NavBar: React.FC<NavBarProps> = ({ navigationItems }) => {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, onReadMore }) => {
     const getCategoryColor = (category: string) => {
         switch (category) {
-            case 'Solaire': return COLORS.jauneEnergie;
-            case 'Efficacité énergétique': return COLORS.vertEnergie;
-            case 'Mobilité électrique': return COLORS.bleuSolaire;
+            case 'Solaire': return '#FFC107';
+            case 'Efficacité énergétique': return '#4CAF50';
+            case 'Mobilité électrique': return '#2196F3';
             default: return '#6B7280';
         }
     };
@@ -162,13 +162,23 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, onReadMore }) => {
     return (
         <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
             <div className="relative overflow-hidden">
-                <div className="h-48 bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <div className="text-gray-400">
-                        {getCategoryIcon(article.category)}
+                {article.image ? (
+                    <div className="h-48 overflow-hidden">
+                        <img
+                            src={article.image}
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                     </div>
-                </div>
+                ) : (
+                    <div className="h-48 bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                        <div className="text-gray-400">
+                            {getCategoryIcon(article.category)}
+                        </div>
+                    </div>
+                )}
                 <div
-                    className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white"
+                    className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white shadow-md"
                     style={{ backgroundColor: getCategoryColor(article.category) }}
                 >
                     {article.category}
@@ -210,7 +220,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, onReadMore }) => {
     );
 };
 
-// Composant ArticleModal
+// Composant ArticleModal amélioré
 const ArticleModal: React.FC<ArticleModalProps> = ({ article, isOpen, onClose }) => {
     useEffect(() => {
         if (isOpen) {
@@ -229,49 +239,156 @@ const ArticleModal: React.FC<ArticleModalProps> = ({ article, isOpen, onClose })
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div
-                className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+                className="absolute inset-0 bg-black bg-opacity-60 transition-opacity duration-300"
                 onClick={onClose}
             />
             <div className="relative bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 scale-100 opacity-100">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow"
+                    className="sticky top-4 float-right z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow mr-4"
                 >
                     <X size={24} className="text-gray-600" />
                 </button>
 
-                <div className="relative h-64 sm:h-80 bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
-                    <Sun size={80} className="text-gray-400" />
-                    <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end">
-                        <div className="p-8 text-white">
-                            <h1 className="text-3xl sm:text-4xl font-bold mb-2">{article.title}</h1>
-                            <div className="flex items-center text-sm opacity-90">
+                {/* Image de l'article */}
+                <div className="relative h-64 sm:h-80 overflow-hidden">
+                    {article.image ? (
+                        <>
+                            <img
+                                src={article.image}
+                                alt={article.title}
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                        </>
+                    ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                            <Sun size={80} className="text-gray-400" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                        </div>
+                    )}
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white">
+                        <div
+                            className="inline-block px-3 py-1 rounded-full text-xs font-medium mb-3"
+                            style={{ backgroundColor: getCategoryColor(article.category) }}
+                        >
+                            {article.category}
+                        </div>
+                        <h1 className="text-2xl sm:text-4xl font-bold mb-3 leading-tight">{article.title}</h1>
+                        <div className="flex items-center text-sm opacity-90 flex-wrap gap-3">
+                            <div className="flex items-center">
                                 <Calendar size={16} className="mr-2" />
-                                <span className="mr-4">{article.date}</span>
-                                <User size={16} className="mr-2" />
-                                <span className="mr-4">{article.author}</span>
-                                <span>{article.readTime}</span>
+                                <span>{article.date}</span>
                             </div>
+                            <div className="flex items-center">
+                                <User size={16} className="mr-2" />
+                                <span>{article.author}</span>
+                            </div>
+                            <span>{article.readTime}</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="p-8">
-                    <div className="prose max-w-none">
+                <div className="p-6 sm:p-8 lg:p-12">
+                    {/* Résumé en gras */}
+                    <div className="mb-8 p-5 bg-gradient-to-r from-blue-50 to-green-50 border-l-4 border-green-500 rounded-r-lg shadow-sm">
+                        <p className="text-xl text-gray-900 font-semibold leading-relaxed">
+                            {article.summary}
+                        </p>
+                    </div>
+
+                    {/* Contenu de l'article avec meilleure lisibilité */}
+                    <div className="article-content">
+                        <style jsx>{`
+                            .article-content {
+                                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                            }
+
+                            .article-content :global(h2) {
+                                font-size: 2rem !important;
+                                font-weight: 700 !important;
+                                margin-top: 3rem !important;
+                                margin-bottom: 1.5rem !important;
+                                color: #111827 !important;
+                                padding-bottom: 0.75rem !important;
+                                border-bottom: 3px solid #10b981 !important;
+                                line-height: 1.3 !important;
+                            }
+
+                            .article-content :global(h2:first-of-type) {
+                                margin-top: 0 !important;
+                            }
+
+                            .article-content :global(p) {
+                                margin-bottom: 1.75rem !important;
+                                line-height: 2 !important;
+                                color: #111827 !important;
+                                font-size: 1.125rem !important;
+                                font-weight: 400 !important;
+                            }
+
+                            .article-content :global(ul),
+                            .article-content :global(ol) {
+                                margin: 2rem 0 !important;
+                                padding-left: 2rem !important;
+                            }
+
+                            .article-content :global(li) {
+                                margin-bottom: 1rem !important;
+                                line-height: 1.9 !important;
+                                color: #111827 !important;
+                                font-size: 1.0625rem !important;
+                            }
+
+                            .article-content :global(strong) {
+                                color: #000000 !important;
+                                font-weight: 700 !important;
+                            }
+
+                            .article-content :global(br) {
+                                display: block !important;
+                                content: "" !important;
+                                margin-top: 0.5rem !important;
+                            }
+
+                            .article-content :global(a) {
+                                color: #10b981 !important;
+                                text-decoration: underline !important;
+                                font-weight: 500 !important;
+                            }
+
+                            .article-content :global(a:hover) {
+                                color: #059669 !important;
+                            }
+                        `}</style>
                         <div dangerouslySetInnerHTML={{ __html: article.content }} />
                     </div>
 
-                    <div className="mt-8 p-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl text-white text-center">
-                        <h3 className="text-xl font-bold mb-2">Besoin d&apos;un conseil personnalisé ?</h3>
-                        <p className="mb-4 opacity-90">Nos experts sont là pour vous accompagner dans votre projet énergétique</p>
-                        <button className="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                            Demander un conseil
+                    {/* CTA personnalisé */}
+                    <div className="mt-12 p-6 sm:p-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl text-white text-center shadow-lg">
+                        <h3 className="text-xl sm:text-2xl font-bold mb-3">Besoin d'un conseil personnalisé ?</h3>
+                        <p className="mb-6 opacity-95 text-base sm:text-lg">
+                            Nos experts sont là pour vous accompagner dans votre projet énergétique
+                        </p>
+                        <button className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-md hover:shadow-lg transform hover:scale-105 transition-transform">
+                            Demander un conseil gratuit
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     );
+};
+
+// Fonction helper pour la couleur de catégorie (à ajouter avant ArticleModal)
+const getCategoryColor = (category: string) => {
+    switch (category) {
+        case 'Solaire': return '#FFC107';
+        case 'Efficacité énergétique': return '#4CAF50';
+        case 'Mobilité électrique': return '#2196F3';
+        default: return '#6B7280';
+    }
 };
 
 // Composant principal
@@ -315,7 +432,7 @@ export default function BlogConseilsEnergie() {
                 <h2>5. Débrancher les appareils en veille</h2>
                 <p>Les appareils en veille représentent jusqu'à 10% de votre consommation électrique. Utilisez des multiprises avec interrupteur.</p>
             `,
-            image: "/images/conseils-electricite.jpg",
+            image: "/images/conseil-electricite.png",
             category: "Efficacité énergétique",
             date: "15 Mars 2024",
             author: "Sophie Martin",
@@ -342,7 +459,7 @@ export default function BlogConseilsEnergie() {
                 <h2>Maintenance</h2>
                 <p>Les panneaux solaires nécessitent peu de maintenance : un nettoyage annuel et une vérification technique tous les 4 ans suffisent.</p>
             `,
-            image: "/images/panneaux-solaires.jpg",
+            image: "/images/pannaux_solaires.png",
             category: "Solaire",
             date: "10 Mars 2024",
             author: "Jean Dupont",
@@ -365,7 +482,7 @@ export default function BlogConseilsEnergie() {
                 <h2>Entretien spécifique</h2>
                 <p>Vérifiez régulièrement la pression des pneus, entretenez les freins et contrôlez l'état de la batterie.</p>
             `,
-            image: "/images/voiture-electrique.jpg",
+            image: "/images/voitures_electriques.png",
             category: "Mobilité électrique",
             date: "5 Mars 2024",
             author: "Marie Dubois",
@@ -388,7 +505,7 @@ export default function BlogConseilsEnergie() {
                 <h2>Impact environnemental</h2>
                 <p>Moins de consommation électrique et durée de vie plus longue font des LED un choix écologique évident.</p>
             `,
-            image: "/images/led-comparison.jpg",
+            image: "/images/ampoule.png",
             category: "Conseils pratiques",
             date: "1 Mars 2024",
             author: "Pierre Lambert",
@@ -408,7 +525,7 @@ export default function BlogConseilsEnergie() {
                 <h2>Coûts et aides</h2>
                 <p>Comptez entre 500€ et 2000€ selon le type. Le crédit d'impôt de 75% est plafonné à 300€.</p>
             `,
-            image: "/images/borne-recharge.jpg",
+            image: "/images/borne-recharge.png",
             category: "Mobilité électrique",
             date: "25 Février 2024",
             author: "Thomas Rousseau",
@@ -428,7 +545,7 @@ export default function BlogConseilsEnergie() {
                 <h2>Stockage d'énergie</h2>
                 <p>Les batteries domestiques permettent de stocker l'excédent pour une utilisation nocturne.</p>
             `,
-            image: "/images/autoconsommation.jpg",
+            image: "/images/autoconsommation.png",
             category: "Solaire",
             date: "20 Février 2024",
             author: "Claire Moreau",
