@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from 'react';
-import { CheckCircle, Menu, Sun, X } from 'lucide-react';
-import { SolarButton, COLORS } from '@/components/ui/SolarButton';
-import {Footer} from "@/components/layout/footer";
+import { useState, useEffect } from "react"
+import { CheckCircle, Menu, Sun, X } from "lucide-react"
+import { SolarButton, COLORS } from "@/components/ui/SolarButton"
+import { Footer } from "@/components/layout/footer"
 
 const COLOR_VARIANTS = {
   vertEnergie: {
-    "800": "#2E7D32"
-  }
-};
+    "800": "#2E7D32",
+  },
+}
 
 const SolarLandingPage = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
-    const style = document.createElement('style');
+    const style = document.createElement("style")
     style.textContent = `
       @keyframes spin-slow {
         from { transform: rotate(0deg); }
@@ -24,50 +24,50 @@ const SolarLandingPage = () => {
       .animate-spin-slow {
         animation: spin-slow 8s linear infinite;
       }
-    `;
-    document.head.appendChild(style);
+    `
+    document.head.appendChild(style)
     return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
+      document.head.removeChild(style)
+    }
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('opacity-100', 'translate-y-0', 'translate-x-0');
-              entry.target.classList.remove('opacity-0', 'translate-y-12', '-translate-x-12', 'translate-x-12');
+              entry.target.classList.add("opacity-100", "translate-y-0", "translate-x-0")
+              entry.target.classList.remove("opacity-0", "translate-y-12", "-translate-x-12", "translate-x-12")
             } else {
-              entry.target.classList.remove('opacity-100', 'translate-y-0', 'translate-x-0');
-              entry.target.classList.add('opacity-0', 'translate-y-12', '-translate-x-12', 'translate-x-12');
+              entry.target.classList.remove("opacity-100", "translate-y-0", "translate-x-0")
+              entry.target.classList.add("opacity-0", "translate-y-12", "-translate-x-12", "translate-x-12")
             }
-          });
+          })
         },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+    )
 
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    const elements = document.querySelectorAll(".animate-on-scroll")
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   const navigationItems = [
-    { label: 'Accueil', href: '/' },
-    { label: 'À propos', href: '/about' },
-    { label: 'Nos Services', href: '/services' },
-    { label: 'projets & Réalisations', href: '/projets' },
-    { label: 'Blog / Conseils énergie', href: '/tips' },
-    { label: 'Contact', href: '/contact' }
-  ];
+    { label: "Accueil", href: "/" },
+    { label: "À propos", href: "/about" },
+    { label: "Nos Services", href: "/services" },
+    { label: "projets & Réalisations", href: "/projets" },
+    { label: "Blog / Conseils énergie", href: "/tips" },
+    { label: "Contact", href: "/contact" },
+  ]
 
   const benefits = [
     "Réduisez significativement vos factures d'électricité",
-    'Gagnez en autonomie énergétique (partielle ou totale)',
-    'Valorisez votre patrimoine immobilier',
+    "Gagnez en autonomie énergétique (partielle ou totale)",
+    "Valorisez votre patrimoine immobilier",
     "Agissez pour la protection de l'environnement",
-    "Bénéficiez d'un retour sur investissement attractif"
-  ];
+    "Bénéficiez d'un retour sur investissement attractif",
+  ]
 
   return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
@@ -78,16 +78,15 @@ const SolarLandingPage = () => {
               <div className="flex items-center space-x-2">
                 <div className="relative">
                   <Sun className="w-12 h-12 text-yellow-500 animate-spin-slow" />
-                  <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-20" style={{
-                    animation: 'pulse 2s ease-in-out infinite'
-                  }}></div>
+                  <div
+                      className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-20"
+                      style={{
+                        animation: "pulse 2s ease-in-out infinite",
+                      }}
+                  ></div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <img
-                      src="/images/logo-solar.png"
-                      alt="Logo Solar Energy Options"
-                      className="h-16 w-18"
-                  />
+                  <img src="/images/logo-solar.png" alt="Logo Solar Energy Options" className="h-16 w-18" />
                 </div>
               </div>
 
@@ -137,30 +136,25 @@ const SolarLandingPage = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
               <div className="space-y-8">
                 <div>
-                  <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: COLOR_VARIANTS.vertEnergie["800"] }}>
+                  <h1
+                      className="text-4xl lg:text-6xl font-bold leading-tight mb-6"
+                      style={{ color: COLOR_VARIANTS.vertEnergie["800"] }}
+                  >
                     ÉNERGIE SOLAIRE
                     <br />
                     <span style={{ color: COLOR_VARIANTS.vertEnergie["800"] }}>POUR VOUS</span>
                   </h1>
 
                   <p className="text-lg text-gray-600 mb-8 max-w-md">
-                    Réduisez votre empreinte énergétique, améliorez
-                    votre confort et renforcez votre impact environnemental
+                    Réduisez votre empreinte énergétique, améliorez votre confort et renforcez votre impact
+                    environnemental
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <SolarButton
-                        variant="primary"
-                        size="md"
-                        onClick={() => window.location.href='/contact'}
-                    >
+                    <SolarButton variant="primary" size="md" onClick={() => (window.location.href = "/contact")}>
                       DEMANDEZ UN DEVIS DÈS AUJOURD'HUI
                     </SolarButton>
-                    <SolarButton
-                        variant="outline"
-                        size="md"
-                        onClick={() => window.location.href='/services'}
-                    >
+                    <SolarButton variant="outline" size="md" onClick={() => (window.location.href = "/services")}>
                       En savoir plus
                     </SolarButton>
                   </div>
@@ -181,18 +175,25 @@ const SolarLandingPage = () => {
               {/* Right Content - Solar Panel Image with Clip Path */}
               <div className="relative h-full flex items-center">
                 <div
-                    className="relative w-full overflow-hidden transition-all duration-500"
+                    className="relative w-full overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-3xl"
                     style={{
-                      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 83% 100%, 10% 82%)',
-                      minHeight: '500px'
+                      clipPath: "polygon(0 0, 100% 0, 100% 100%, 80% 100%, 8% 78%)",
+                      minHeight: "750px",
+                      height: "100%",
                     }}
                 >
+                  {/* Gradient overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 z-10 pointer-events-none"></div>
+
                   <img
                       src="/images/accueil_solar.jpeg"
                       alt="Panneaux solaires sur toit"
-                      className="w-full h-full object-cover"
-                      style={{ objectPosition: 'center' }}
+                      className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700"
+                      style={{ objectPosition: "center 40%" }}
                   />
+
+                  {/* Subtle glow effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 to-green-400/20 blur-2xl -z-10"></div>
                 </div>
               </div>
             </div>
@@ -234,8 +235,9 @@ const SolarLandingPage = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Expertise Reconnue</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Notre équipe est composée de techniciens expérimentés et d'ingénieurs spécialisés dans les énergies renouvelables.
-                      Qualifiés pour l'installation de bornes de recharge électrique, nous garantissons des services professionnels et fiables.
+                      Notre équipe est composée de techniciens expérimentés et d'ingénieurs spécialisés dans les énergies
+                      renouvelables. Qualifiés pour l'installation de bornes de recharge électrique, nous garantissons des
+                      services professionnels et fiables.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -257,8 +259,9 @@ const SolarLandingPage = () => {
                   <div className="order-2 lg:order-1 space-y-6 animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Qualité et Fiabilité</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Nous utilisons uniquement des équipements de marques reconnues et offrons des garanties étendues sur tous nos produits et services.
-                      Vous bénéficiez ainsi d'installations durables et performantes pour une tranquillité d'esprit maximale.
+                      Nous utilisons uniquement des équipements de marques reconnues et offrons des garanties étendues sur
+                      tous nos produits et services. Vous bénéficiez ainsi d'installations durables et performantes pour
+                      une tranquillité d'esprit maximale.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -316,8 +319,9 @@ const SolarLandingPage = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Approche Personnalisée</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Chaque projet est unique. Nous analysons vos besoins pour vous proposer la solution la mieux adaptée à votre situation et votre budget,
-                      qu'il s'agisse d'une installation résidentielle, commerciale ou institutionnelle.
+                      Chaque projet est unique. Nous analysons vos besoins pour vous proposer la solution la mieux adaptée
+                      à votre situation et votre budget, qu'il s'agisse d'une installation résidentielle, commerciale ou
+                      institutionnelle.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -339,9 +343,9 @@ const SolarLandingPage = () => {
                   <div className="order-2 lg:order-1 space-y-6 animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Engagement Environnemental</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      En choisissant Solar Energy Options, vous participez activement à la transition énergétique
-                      et à la lutte contre le changement climatique. Nos solutions réduisent les émissions de CO2
-                      et préservent l'environnement pour les générations futures.
+                      En choisissant Solar Energy Options, vous participez activement à la transition énergétique et à la
+                      lutte contre le changement climatique. Nos solutions réduisent les émissions de CO2 et préservent
+                      l'environnement pour les générations futures.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -399,8 +403,8 @@ const SolarLandingPage = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Service Client Excellence</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Notre service client répond à toutes vos questions et vous accompagne tout au long du projet.
-                      Nous privilégions transparence et communication pour garantir votre satisfaction.
+                      Notre service client répond à toutes vos questions et vous accompagne tout au long du projet. Nous
+                      privilégions transparence et communication pour garantir votre satisfaction.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -421,13 +425,16 @@ const SolarLandingPage = () => {
                 <h3 className="text-3xl font-bold text-center mb-8 text-green-700">Nos Engagements</h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    'Devis gratuit et sans engagement',
-                    'Installation par des techniciens expérimentés',
-                    'Garantie sur tous nos équipements',
-                    'Service après-vente réactif',
-                    'Accompagnement personnalisé'
+                    "Devis gratuit et sans engagement",
+                    "Installation par des techniciens expérimentés",
+                    "Garantie sur tous nos équipements",
+                    "Service après-vente réactif",
+                    "Accompagnement personnalisé",
                   ].map((engagement, index) => (
-                      <div key={index} className="flex items-center space-x-3 bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+                      <div
+                          key={index}
+                          className="flex items-center space-x-3 bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
+                      >
                         <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
                         <span className="text-gray-800 font-medium">{engagement}</span>
                       </div>
@@ -448,7 +455,7 @@ const SolarLandingPage = () => {
                     <SolarButton
                         variant="primary"
                         size="lg"
-                        onClick={() => window.location.href='/contact'}
+                        onClick={() => (window.location.href = "/contact")}
                         className="animate-pulse hover:animate-none hover:scale-105 shadow-lg shadow-yellow-400/50"
                     >
                       Contactez nos experts maintenant !
@@ -461,9 +468,9 @@ const SolarLandingPage = () => {
         </main>
 
         {/* Footer */}
-        <Footer/>
+        <Footer />
       </div>
-  );
-};
+  )
+}
 
-export default SolarLandingPage;
+export default SolarLandingPage
