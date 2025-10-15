@@ -56,17 +56,17 @@ const SolarLandingPage = () => {
     { label: "Accueil", href: "/" },
     { label: "À propos", href: "/about" },
     { label: "Nos Services", href: "/services" },
-    { label: "projets & Réalisations", href: "/projets" },
+    { label: "Projets & Réalisations", href: "/projets" },
     { label: "Blog / Conseils énergie", href: "/tips" },
     { label: "Contact", href: "/contact" },
   ]
 
   const benefits = [
-    "Réduisez significativement vos factures d'électricité",
+    "Réduisez significativement vos factures d&apos;électricité",
     "Gagnez en autonomie énergétique (partielle ou totale)",
     "Valorisez votre patrimoine immobilier",
-    "Agissez pour la protection de l'environnement",
-    "Bénéficiez d'un retour sur investissement attractif",
+    "Agissez pour la protection de l&apos;environnement",
+    "Bénéficiez d&apos;un retour sur investissement attractif",
   ]
 
   return (
@@ -152,7 +152,7 @@ const SolarLandingPage = () => {
 
                   <div className="flex flex-col sm:flex-row gap-4">
                     <SolarButton variant="primary" size="md" onClick={() => (window.location.href = "/contact")}>
-                      DEMANDEZ UN DEVIS DÈS AUJOURD'HUI
+                      DEMANDEZ UN DEVIS DÈS AUJOURD&apos;HUI
                     </SolarButton>
                     <SolarButton variant="outline" size="md" onClick={() => (window.location.href = "/services")}>
                       En savoir plus
@@ -219,7 +219,7 @@ const SolarLandingPage = () => {
                       <div className="aspect-video relative">
                         <img
                             src="/images/expertise_reconnue.png"
-                            alt="Équipe d'experts"
+                            alt="Équipe d&apos;experts"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -235,8 +235,8 @@ const SolarLandingPage = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Expertise Reconnue</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Notre équipe est composée de techniciens expérimentés et d'ingénieurs spécialisés dans les énergies
-                      renouvelables. Qualifiés pour l'installation de bornes de recharge électrique, nous garantissons des
+                      Notre équipe est composée de techniciens expérimentés et d&apos;ingénieurs spécialisés dans les énergies
+                      renouvelables. Qualifiés pour l&apos;installation de bornes de recharge électrique, nous garantissons des
                       services professionnels et fiables.
                     </p>
                     <div className="space-y-3">
@@ -260,8 +260,8 @@ const SolarLandingPage = () => {
                     <h3 className="text-3xl font-bold text-green-700">Qualité et Fiabilité</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Nous utilisons uniquement des équipements de marques reconnues et offrons des garanties étendues sur
-                      tous nos produits et services. Vous bénéficiez ainsi d'installations durables et performantes pour
-                      une tranquillité d'esprit maximale.
+                      tous nos produits et services. Vous bénéficiez ainsi d&apos;installations durables et performantes pour
+                      une tranquillité d&apos;esprit maximale.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -320,7 +320,7 @@ const SolarLandingPage = () => {
                     <h3 className="text-3xl font-bold text-green-700">Approche Personnalisée</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Chaque projet est unique. Nous analysons vos besoins pour vous proposer la solution la mieux adaptée
-                      à votre situation et votre budget, qu'il s'agisse d'une installation résidentielle, commerciale ou
+                      à votre situation et votre budget, qu&apos;il s&apos;agisse d&apos;une installation résidentielle, commerciale ou
                       institutionnelle.
                     </p>
                     <div className="space-y-3">
@@ -345,7 +345,7 @@ const SolarLandingPage = () => {
                     <p className="text-gray-700 text-lg leading-relaxed">
                       En choisissant Solar Energy Options, vous participez activement à la transition énergétique et à la
                       lutte contre le changement climatique. Nos solutions réduisent les émissions de CO2 et préservent
-                      l'environnement pour les générations futures.
+                      l&apos;environnement pour les générations futures.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -354,7 +354,7 @@ const SolarLandingPage = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
-                        <span className="text-gray-800 font-medium">Préservation de l'environnement</span>
+                        <span className="text-gray-800 font-medium">Préservation de l&apos;environnement</span>
                       </div>
                     </div>
                   </div>
@@ -370,7 +370,7 @@ const SolarLandingPage = () => {
                         <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
                           <div>
                             <h4 className="text-2xl font-bold mb-4">Éco-Responsable</h4>
-                            <p className="text-lg">Pour un avenir durable et respectueux de l'environnement</p>
+                            <p className="text-lg">Pour un avenir durable et respectueux de l&apos;environnement</p>
                           </div>
                         </div>
                       </div>
@@ -446,10 +446,10 @@ const SolarLandingPage = () => {
               <div className="text-center animate-on-scroll opacity-0 translate-y-12 transition-all duration-700 ease-out">
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-green-700">
-                    Rejoignez dès aujourd'hui la révolution énergétique !
+                    Rejoignez dès aujourd&apos;hui la révolution énergétique !
                   </h3>
                   <p className="text-xl text-gray-600 mb-8">
-                    Contribuez à un avenir plus durable pour l'Afrique avec Solar Energy Options
+                    Contribuez à un avenir plus durable pour l&apos;Afrique avec Solar Energy Options
                   </p>
                   <div className="inline-block">
                     <SolarButton

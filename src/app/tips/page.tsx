@@ -367,7 +367,7 @@ const ArticleModal: React.FC<ArticleModalProps> = ({ article, isOpen, onClose })
 
                     {/* CTA personnalisé */}
                     <div className="mt-12 p-6 sm:p-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl text-white text-center shadow-lg">
-                        <h3 className="text-xl sm:text-2xl font-bold mb-3">Besoin d'un conseil personnalisé ?</h3>
+                        <h3 className="text-xl sm:text-2xl font-bold mb-3">Besoin d&apos;un conseil personnalisé ?</h3>
                         <p className="mb-6 opacity-95 text-base sm:text-lg">
                             Nos experts sont là pour vous accompagner dans votre projet énergétique
                         </p>
