@@ -13,6 +13,16 @@ const COLOR_VARIANTS = {
 
 const SolarLandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [currentImage, setCurrentImage] = useState(0)
+
+  // Alternate between two images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev === 0 ? 1 : 0))
+    }, 15000) // Change every 15 seconds to sync with animation
+
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const style = document.createElement("style")
@@ -23,6 +33,134 @@ const SolarLandingPage = () => {
       }
       .animate-spin-slow {
         animation: spin-slow 8s linear infinite;
+      }
+      
+      @keyframes slide-glare {
+        0% { transform: translate3d(-100%, -100%, 0) scale(0.9); opacity: 0.3; }
+        50% { transform: translate3d(50%, 50%, 0) scale(1.1); opacity: 0.6; }
+        100% { transform: translate3d(100%, 100%, 0) scale(0.9); opacity: 0.3; }
+      }
+      
+      @keyframes pulse-glow {
+        0% {
+          box-shadow: 0 0 15px rgba(255, 180, 0, 0.6), 0 0 30px rgba(255, 80, 0, 0.3);
+          opacity: 0.9;
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(255, 255, 100, 1), 0 0 80px rgba(255, 140, 0, 0.6);
+          opacity: 1;
+        }
+        100% {
+          box-shadow: 0 0 15px rgba(255, 180, 0, 0.6), 0 0 30px rgba(255, 80, 0, 0.3);
+          opacity: 0.9;
+        }
+      }
+      
+      @keyframes move-halo {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(2%, 1%); }
+        100% { transform: translate(0, 0); }
+      }
+      
+      @keyframes fadeCycle {
+        0% {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+          filter: brightness(1) saturate(1) contrast(1);
+        }
+        20% {
+          filter: brightness(1.3) saturate(1.4) contrast(1.1);
+        }
+        45% {
+          opacity: 1;
+          filter: brightness(1.4) saturate(1.5) contrast(1.15);
+        }
+        50% {
+          opacity: 0;
+          transform: scale(1.02);
+        }
+        51% {
+          opacity: 0;
+        }
+        55% {
+          opacity: 0;
+        }
+        70% {
+          opacity: 1;
+          filter: brightness(1.4) saturate(1.5) contrast(1.15);
+        }
+        90% {
+          filter: brightness(1.3) saturate(1.4) contrast(1.1);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+          filter: brightness(1) saturate(1) contrast(1);
+        }
+      }
+      
+      @keyframes lightPulse {
+        0%, 100% {
+          filter: brightness(1) saturate(1);
+        }
+        50% {
+          filter: brightness(1.5) saturate(1.6);
+        }
+      }
+      
+      .solar-image-container {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .solar-image-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150%;
+        height: 150%;
+        opacity: 0.5;
+        background: linear-gradient(
+          45deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.3) 50%,
+          transparent 60%
+        );
+        animation: slide-glare 25s infinite ease-in-out;
+        z-index: 10;
+        pointer-events: none;
+      }
+      
+      .solar-halo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 3;
+        background: radial-gradient(circle at 75% 30%, rgba(255, 200, 50, 0.4) 0%, rgba(255, 165, 0, 0.25) 15%, rgba(255, 220, 100, 0.15) 40%, transparent 70%);
+        animation: pulse-glow 4s ease-in-out infinite alternate, move-halo 10s linear infinite;
+      }
+      
+      .solar-light-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 4;
+        background: radial-gradient(ellipse at 60% 40%, rgba(255, 255, 200, 0.3) 0%, transparent 60%);
+        animation: lightPulse 8s ease-in-out infinite;
+        mix-blend-mode: overlay;
+      }
+      
+      .solar-image-animated {
+        animation: fadeCycle 30s infinite ease-in-out;
+        filter: brightness(1.1) contrast(1.1);
+        transition: filter 0.5s;
       }
     `
     document.head.appendChild(style)
@@ -62,11 +200,11 @@ const SolarLandingPage = () => {
   ]
 
   const benefits = [
-    "Réduisez significativement vos factures d&apos;électricité",
+    "Réduisez significativement vos factures d'électricité",
     "Gagnez en autonomie énergétique (partielle ou totale)",
     "Valorisez votre patrimoine immobilier",
-    "Agissez pour la protection de l&apos;environnement",
-    "Bénéficiez d&apos;un retour sur investissement attractif",
+    "Agissez pour la protection de l'environnement",
+    "Bénéficiez d'un retour sur investissement attractif",
   ]
 
   return (
@@ -152,7 +290,7 @@ const SolarLandingPage = () => {
 
                   <div className="flex flex-col sm:flex-row gap-4">
                     <SolarButton variant="primary" size="md" onClick={() => (window.location.href = "/contact")}>
-                      DEMANDEZ UN DEVIS DÈS AUJOURD&apos;HUI
+                      DEMANDEZ UN DEVIS DÈS AUJOURD'HUI
                     </SolarButton>
                     <SolarButton variant="outline" size="md" onClick={() => (window.location.href = "/services")}>
                       En savoir plus
@@ -175,25 +313,49 @@ const SolarLandingPage = () => {
               {/* Right Content - Solar Panel Image with Clip Path */}
               <div className="relative h-full flex items-center">
                 <div
-                    className="relative w-full overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-3xl"
+                    className="solar-image-container relative w-full transition-all duration-500 shadow-2xl hover:shadow-3xl"
                     style={{
-                      clipPath: "polygon(0 0, 100% 0, 100% 100%, 80% 100%, 8% 78%)",
-                      minHeight: "750px",
+                      clipPath: "polygon(0 0, 100% 0, 100% 100%, 75% 100%, 5% 75%)",
+                      minHeight: "850px",
                       height: "100%",
+                      overflow: "hidden",
                     }}
                 >
-                  {/* Gradient overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 z-10 pointer-events-none"></div>
+                  {/* Solar Halo Effect */}
+                  <div className="solar-halo"></div>
 
+                  {/* Light Overlay */}
+                  <div className="solar-light-overlay"></div>
+
+                  {/* Gradient overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 pointer-events-none" style={{ zIndex: 11 }}></div>
+
+                  {/* First Image */}
                   <img
-                      src="/images/accueil_solar.jpeg"
+                      src="/images/accueil_1.png"
                       alt="Panneaux solaires sur toit"
-                      className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700"
-                      style={{ objectPosition: "center 40%" }}
+                      className="solar-image-animated w-full h-full object-cover absolute inset-0"
+                      style={{
+                        objectPosition: "center 40%",
+                        opacity: currentImage === 0 ? 1 : 0,
+                        transition: "opacity 2s ease-in-out"
+                      }}
+                  />
+
+                  {/* Second Image */}
+                  <img
+                      src="/images/accueil_2.png"
+                      alt="Installation solaire"
+                      className="solar-image-animated w-full h-full object-cover absolute inset-0"
+                      style={{
+                        objectPosition: "center 40%",
+                        opacity: currentImage === 1 ? 1 : 0,
+                        transition: "opacity 2s ease-in-out"
+                      }}
                   />
 
                   {/* Subtle glow effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 to-green-400/20 blur-2xl -z-10"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 blur-2xl" style={{ zIndex: -1 }}></div>
                 </div>
               </div>
             </div>
@@ -218,8 +380,8 @@ const SolarLandingPage = () => {
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
                       <div className="aspect-video relative">
                         <img
-                            src="/images/expertise_reconnue.png"
-                            alt="Équipe d&apos;experts"
+                            src="/images/expertise_reconnue.jpg"
+                            alt="Équipe d'experts"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -235,8 +397,8 @@ const SolarLandingPage = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Expertise Reconnue</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Notre équipe est composée de techniciens expérimentés et d&apos;ingénieurs spécialisés dans les énergies
-                      renouvelables. Qualifiés pour l&apos;installation de bornes de recharge électrique, nous garantissons des
+                      Notre équipe est composée de techniciens expérimentés et d'ingénieurs spécialisés dans les énergies
+                      renouvelables. Qualifiés pour l'installation de bornes de recharge électrique, nous garantissons des
                       services professionnels et fiables.
                     </p>
                     <div className="space-y-3">
@@ -260,8 +422,8 @@ const SolarLandingPage = () => {
                     <h3 className="text-3xl font-bold text-green-700">Qualité et Fiabilité</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Nous utilisons uniquement des équipements de marques reconnues et offrons des garanties étendues sur
-                      tous nos produits et services. Vous bénéficiez ainsi d&apos;installations durables et performantes pour
-                      une tranquillité d&apos;esprit maximale.
+                      tous nos produits et services. Vous bénéficiez ainsi d'installations durables et performantes pour
+                      une tranquillité d'esprit maximale.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -320,7 +482,7 @@ const SolarLandingPage = () => {
                     <h3 className="text-3xl font-bold text-green-700">Approche Personnalisée</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Chaque projet est unique. Nous analysons vos besoins pour vous proposer la solution la mieux adaptée
-                      à votre situation et votre budget, qu&apos;il s&apos;agisse d&apos;une installation résidentielle, commerciale ou
+                      à votre situation et votre budget, qu'il s'agisse d'une installation résidentielle, commerciale ou
                       institutionnelle.
                     </p>
                     <div className="space-y-3">
@@ -345,7 +507,7 @@ const SolarLandingPage = () => {
                     <p className="text-gray-700 text-lg leading-relaxed">
                       En choisissant Solar Energy Options, vous participez activement à la transition énergétique et à la
                       lutte contre le changement climatique. Nos solutions réduisent les émissions de CO2 et préservent
-                      l&apos;environnement pour les générations futures.
+                      l'environnement pour les générations futures.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -354,7 +516,7 @@ const SolarLandingPage = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
-                        <span className="text-gray-800 font-medium">Préservation de l&apos;environnement</span>
+                        <span className="text-gray-800 font-medium">Préservation de l'environnement</span>
                       </div>
                     </div>
                   </div>
@@ -370,7 +532,7 @@ const SolarLandingPage = () => {
                         <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
                           <div>
                             <h4 className="text-2xl font-bold mb-4">Éco-Responsable</h4>
-                            <p className="text-lg">Pour un avenir durable et respectueux de l&apos;environnement</p>
+                            <p className="text-lg">Pour un avenir durable et respectueux de l'environnement</p>
                           </div>
                         </div>
                       </div>
@@ -446,10 +608,10 @@ const SolarLandingPage = () => {
               <div className="text-center animate-on-scroll opacity-0 translate-y-12 transition-all duration-700 ease-out">
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-green-700">
-                    Rejoignez dès aujourd&apos;hui la révolution énergétique !
+                    Rejoignez dès aujourd'hui la révolution énergétique !
                   </h3>
                   <p className="text-xl text-gray-600 mb-8">
-                    Contribuez à un avenir plus durable pour l&apos;Afrique avec Solar Energy Options
+                    Contribuez à un avenir plus durable pour l'Afrique avec Solar Energy Options
                   </p>
                   <div className="inline-block">
                     <SolarButton
