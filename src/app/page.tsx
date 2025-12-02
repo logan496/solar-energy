@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { CheckCircle, Menu, Sun, X } from "lucide-react"
+import Image from "next/image"
 import { SolarButton, COLORS } from "@/components/ui/SolarButton"
 import { Footer } from "@/components/layout/footer"
 
@@ -200,11 +201,11 @@ const SolarLandingPage = () => {
   ]
 
   const benefits = [
-    "Réduisez significativement vos factures d'électricité",
+    "Réduisez significativement vos factures d&apos;électricité",
     "Gagnez en autonomie énergétique (partielle ou totale)",
     "Valorisez votre patrimoine immobilier",
-    "Agissez pour la protection de l'environnement",
-    "Bénéficiez d'un retour sur investissement attractif",
+    "Agissez pour la protection de l&apos;environnement",
+    "Bénéficiez d&apos;un retour sur investissement attractif",
   ]
 
   return (
@@ -224,7 +225,13 @@ const SolarLandingPage = () => {
                   ></div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <img src="/images/logo-solar.png" alt="Logo Solar Energy Options" className="h-16 w-18" />
+                  <Image
+                      src="/images/logo-solar.png"
+                      alt="Logo Solar Energy Options"
+                      width={72}
+                      height={64}
+                      className="h-16 w-auto"
+                  />
                 </div>
               </div>
 
@@ -290,7 +297,7 @@ const SolarLandingPage = () => {
 
                   <div className="flex flex-col sm:flex-row gap-4">
                     <SolarButton variant="primary" size="md" onClick={() => (window.location.href = "/contact")}>
-                      DEMANDEZ UN DEVIS DÈS AUJOURD'HUI
+                      DEMANDEZ UN DEVIS D&apos;AUJOURD&apos;HUI
                     </SolarButton>
                     <SolarButton variant="outline" size="md" onClick={() => (window.location.href = "/services")}>
                       En savoir plus
@@ -328,34 +335,44 @@ const SolarLandingPage = () => {
                   <div className="solar-light-overlay"></div>
 
                   {/* Gradient overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 pointer-events-none" style={{ zIndex: 11 }}></div>
+                  <div
+                      className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 pointer-events-none"
+                      style={{ zIndex: 11 }}
+                  ></div>
 
                   {/* First Image */}
-                  <img
+                  <Image
                       src="/images/accueil_1.png"
                       alt="Panneaux solaires sur toit"
-                      className="solar-image-animated w-full h-full object-cover absolute inset-0"
+                      fill
+                      className="solar-image-animated object-cover absolute inset-0"
                       style={{
                         objectPosition: "center 40%",
                         opacity: currentImage === 0 ? 1 : 0,
-                        transition: "opacity 2s ease-in-out"
+                        transition: "opacity 2s ease-in-out",
                       }}
+                      sizes="(max-width: 768px) 100vw, 50vw"
                   />
 
                   {/* Second Image */}
-                  <img
+                  <Image
                       src="/images/accueil_2.png"
                       alt="Installation solaire"
-                      className="solar-image-animated w-full h-full object-cover absolute inset-0"
+                      fill
+                      className="solar-image-animated object-cover absolute inset-0"
                       style={{
                         objectPosition: "center 40%",
                         opacity: currentImage === 1 ? 1 : 0,
-                        transition: "opacity 2s ease-in-out"
+                        transition: "opacity 2s ease-in-out",
                       }}
+                      sizes="(max-width: 768px) 100vw, 50vw"
                   />
 
                   {/* Subtle glow effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 blur-2xl" style={{ zIndex: -1 }}></div>
+                  <div
+                      className="absolute -inset-1 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 blur-2xl"
+                      style={{ zIndex: -1 }}
+                  ></div>
                 </div>
               </div>
             </div>
@@ -379,10 +396,12 @@ const SolarLandingPage = () => {
                   <div className="animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
                       <div className="aspect-video relative">
-                        <img
+                        <Image
                             src="/images/expertise_reconnue.jpg"
-                            alt="Équipe d'experts"
+                            alt="Équipe d&apos;experts"
+                            fill
                             className="w-full h-full object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                         <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
@@ -397,9 +416,9 @@ const SolarLandingPage = () => {
                   <div className="space-y-6 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <h3 className="text-3xl font-bold text-green-700">Expertise Reconnue</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Notre équipe est composée de techniciens expérimentés et d'ingénieurs spécialisés dans les énergies
-                      renouvelables. Qualifiés pour l'installation de bornes de recharge électrique, nous garantissons des
-                      services professionnels et fiables.
+                      Notre équipe est composée de techniciens expérimentés et d&apos;ingénieurs spécialisés dans les
+                      énergies renouvelables. Qualifiés pour l&apos;installation de bornes de recharge électrique, nous
+                      garantissons des services professionnels et fiables.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -422,8 +441,8 @@ const SolarLandingPage = () => {
                     <h3 className="text-3xl font-bold text-green-700">Qualité et Fiabilité</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Nous utilisons uniquement des équipements de marques reconnues et offrons des garanties étendues sur
-                      tous nos produits et services. Vous bénéficiez ainsi d'installations durables et performantes pour
-                      une tranquillité d'esprit maximale.
+                      tous nos produits et services. Vous bénéficiez ainsi d&apos;installations durables et performantes
+                      pour une tranquillité d&apos;esprit maximale.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -439,10 +458,12 @@ const SolarLandingPage = () => {
                   <div className="order-1 lg:order-2 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
                       <div className="aspect-video relative">
-                        <img
-                            src="/images/qualite_fiabilite.png"
+                        <Image
+                            src="/images/accueil_quali.jpg"
                             alt="Panneaux solaires premium"
+                            fill
                             className="w-full h-full object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                         <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
@@ -463,10 +484,12 @@ const SolarLandingPage = () => {
                   <div className="animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
                       <div className="aspect-video relative">
-                        <img
+                        <Image
                             src="/images/approche.png"
                             alt="Consultation personnalisée"
+                            fill
                             className="w-full h-full object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                         <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
@@ -482,8 +505,8 @@ const SolarLandingPage = () => {
                     <h3 className="text-3xl font-bold text-green-700">Approche Personnalisée</h3>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       Chaque projet est unique. Nous analysons vos besoins pour vous proposer la solution la mieux adaptée
-                      à votre situation et votre budget, qu'il s'agisse d'une installation résidentielle, commerciale ou
-                      institutionnelle.
+                      à votre situation et votre budget, qu&apos;il s&apos;agisse d&apos;une installation résidentielle,
+                      commerciale ou institutionnelle.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -507,7 +530,7 @@ const SolarLandingPage = () => {
                     <p className="text-gray-700 text-lg leading-relaxed">
                       En choisissant Solar Energy Options, vous participez activement à la transition énergétique et à la
                       lutte contre le changement climatique. Nos solutions réduisent les émissions de CO2 et préservent
-                      l'environnement pour les générations futures.
+                      l&apos;environnement pour les générations futures.
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
@@ -516,23 +539,25 @@ const SolarLandingPage = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-6 h-6 text-green-600" />
-                        <span className="text-gray-800 font-medium">Préservation de l'environnement</span>
+                        <span className="text-gray-800 font-medium">Préservation de l&apos;environnement</span>
                       </div>
                     </div>
                   </div>
                   <div className="order-1 lg:order-2 animate-on-scroll opacity-0 translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
                       <div className="aspect-video relative">
-                        <img
+                        <Image
                             src="/images/environnement.png"
                             alt="Environnement durable"
+                            fill
                             className="w-full h-full object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                         <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
                           <div>
                             <h4 className="text-2xl font-bold mb-4">Éco-Responsable</h4>
-                            <p className="text-lg">Pour un avenir durable et respectueux de l'environnement</p>
+                            <p className="text-lg">Pour un avenir durable et respectueux de l&apos;environnement</p>
                           </div>
                         </div>
                       </div>
@@ -547,10 +572,12 @@ const SolarLandingPage = () => {
                   <div className="animate-on-scroll opacity-0 -translate-x-12 transition-all duration-700 ease-out">
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group hover:scale-105 hover:shadow-2xl transition-all duration-500">
                       <div className="aspect-video relative">
-                        <img
+                        <Image
                             src="/images/service_client.png"
                             alt="Service client"
+                            fill
                             className="w-full h-full object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                         <div className="absolute inset-0 flex items-center justify-center text-center text-white p-8">
@@ -608,10 +635,10 @@ const SolarLandingPage = () => {
               <div className="text-center animate-on-scroll opacity-0 translate-y-12 transition-all duration-700 ease-out">
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-green-700">
-                    Rejoignez dès aujourd'hui la révolution énergétique !
+                    Rejoignez dès aujourd&apos;hui la révolution énergétique !
                   </h3>
                   <p className="text-xl text-gray-600 mb-8">
-                    Contribuez à un avenir plus durable pour l'Afrique avec Solar Energy Options
+                    Contribuez à un avenir plus durable pour l&apos;Afrique avec Solar Energy Options
                   </p>
                   <div className="inline-block">
                     <SolarButton
